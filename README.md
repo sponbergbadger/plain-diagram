@@ -132,7 +132,7 @@ layout:
 
 > ![](readme-assets/sample1.svg)
 
-*Note: example images do not appear on the npmjs site. Head over to the repo's [page](https://github.com/hsponberg/git-diagram#readme) to see them.*
+*Note: example images do not appear on the npmjs site. Head over to the repo's [page](https://github.com/sponbergbadger/git-diagram#readme) to see them.*
 
 #### Column Span
 
