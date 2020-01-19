@@ -1,0 +1,11 @@
+circle:
+  o: 15
+
+textbox:
+  box: 80 25 Hello, World!
+
+layout:
+
+  o   o   o   o
+
+     box

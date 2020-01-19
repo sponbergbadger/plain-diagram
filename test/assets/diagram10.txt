@@ -1,0 +1,13 @@
+circle:
+  o: 15
+
+line:
+   l: 1 fill
+  l2: 1  200
+
+layout:
+
+  o  l2
+     |   l
+     |   |
+  o  |

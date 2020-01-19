@@ -1,0 +1,14 @@
+ellipse:
+  o: 10 20
+
+shape:
+  s: ellipse
+
+layout:
+
+  s
+  s
+
+shape:ellipse
+
+  o

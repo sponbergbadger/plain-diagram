@@ -1,0 +1,21 @@
+rect:
+  r1: 40 40
+  r2: 40 40
+  r3: 40 40
+
+style:
+  r1: fill: lightblue
+  r2: fill: gray
+  r3: fill: orange
+
+layout:
+
+  r1
+
+*:1 at r1 plus 10,10
+
+  r2
+
+* at r1 plus 20,20
+
+  r3

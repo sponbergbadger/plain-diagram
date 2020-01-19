@@ -1,0 +1,16 @@
+circle:
+   o: 15 // hidden
+  o2: 15
+
+// Ignored
+
+svg:
+ o: display="none"
+
+debug:
+  showGrid: true
+
+layout:
+
+  o  o2 o2 o2
+  o2 o2 o2 o2

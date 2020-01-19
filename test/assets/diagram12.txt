@@ -1,0 +1,20 @@
+circle:
+   o: 15
+  o2: 10
+
+line:
+  line: fill 1
+
+layout:
+
+  o
+         o
+    o2
+
+*:2 from o to o[2]
+
+  line
+
+* from l:2:line to o2
+
+  line

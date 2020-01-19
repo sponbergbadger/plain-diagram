@@ -1,0 +1,6 @@
+output/*.svg
+*.png
+.fuse*
+coverage
+node_modules
+test/assets/output

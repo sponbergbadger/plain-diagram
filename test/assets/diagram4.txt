@@ -1,0 +1,14 @@
+circle:
+  o: 15
+  d:  1
+
+rect:
+  r: 60 30
+
+line:
+  l: 100 1
+
+layout:
+
+  o l--- r
+    d  d

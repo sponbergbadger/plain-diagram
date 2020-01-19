@@ -1,0 +1,17 @@
+circle:
+   o: 15
+  o2: 15
+  o3: 15
+  o4: 15
+   >: 15
+
+style:
+   o: fill: moccasin; stroke: moccasin
+  o2: '
+  o3: ' stroke: blue
+  o4: ' stroke: green
+   >: stroke: red
+
+layout:
+
+  o  o2  o3  o4 >

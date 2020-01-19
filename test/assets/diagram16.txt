@@ -1,0 +1,39 @@
+line:
+   line: 1 fill(-40)
+  line2: 1 fill
+
+rect:
+  A:  100 100
+  C:  100 100
+  D:  100 100
+
+polygon:
+  >:   15,5  0,0  0,10
+
+layout:
+
+  A          C
+
+
+
+  A          D
+
+*:2 at top of A with my top fillHeight:$height
+
+  line
+  >
+
+* at top-left of C with my top plus 10,0 fillHeight:$l:2:height
+
+  line2
+  >
+
+* at top of C with my top fillHeight:25
+
+  line2
+  >
+
+* at top-right of C with my top plus -10,0 fillHeight:$rowspan
+
+  line2
+  >

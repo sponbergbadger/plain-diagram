@@ -1,0 +1,60 @@
+circle:
+  c: 10
+
+ellipse:
+  e: 10 20
+
+line:
+  l: 25 2
+
+rect:
+  r: 50 25
+
+polygon:
+  p: 0,0 15,5 0,10
+
+text:
+   t: Hello, World!
+  t2: Hello,
+      World!
+  t3: 100 25 Left
+             Aligned
+  t4: 100 25 Right
+             Aligned
+  t5: 100 25 Top Aligned
+  t6: 100 25 Bottom Aligned
+
+path:
+  h: 100 100
+     m    0    0
+     h  100
+     v  100
+     h -100
+     l    0 -100
+
+image:
+   i: 10 10 images/image.svg
+  i2: 10 10 https://upload.wikimedia.org/wikipedia/commons/thumb/2/2f/Google_2015_logo.svg/2560px-Google_2015_logo.svg.png
+
+style:
+  t3: text-anchor: start
+  t4: text-anchor: end
+  t5: dominant-baseline: hanging
+  t6: dominant-baseline: baseline
+
+layout:
+
+  c e l
+  r p t
+
+  h i t2 i2
+
+* at bottom of h with my top plus 0,20
+
+  t3
+  t4
+
+* at bottom of h with my top plus 100,20
+
+  t5
+  t6

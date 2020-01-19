@@ -1,0 +1,20 @@
+circle:
+  o: 15
+
+line:
+  tall_line: 1 150
+          l: 1 50
+
+text:
+  one: One
+
+polygon:
+  ^: 5,5  10,20  0,20
+
+layout:
+
+      tall_line
+  o   |
+  ^   |
+  l   |
+  one |

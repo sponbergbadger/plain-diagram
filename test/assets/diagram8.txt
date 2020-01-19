@@ -1,0 +1,27 @@
+circle:
+   o: 5
+  o2: 5
+
+margin:
+    left:  10
+     top: 100
+   right:  15
+  bottom:   5
+
+spacer:
+  vertical: 7
+  horizontal: 3
+
+style:
+   o: fill: $my-purple
+  o2: fill: $my-pink
+
+variable:
+  my-purple: rgb(125, 106, 181)
+    my-pink: rgb(224, 102, 102)
+
+layout:
+
+  o o
+
+  o o2

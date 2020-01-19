@@ -1,0 +1,22 @@
+text:
+   message: Hello
+  message2: World
+  message3: Ipsum
+
+style:
+  message2: font-family: Roboto
+  message3: font-family: Indie Flower
+
+default-style:
+     text: font-family: Lobster
+
+font:
+        import: https://fonts.googleapis.com/css?family=Roboto
+                https://fonts.googleapis.com/css?family=Lobster
+  Indie Flower: fonts/IndieFlower-Regular.ttf
+
+layout:
+
+  message
+  message2
+  message3

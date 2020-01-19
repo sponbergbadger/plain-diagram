@@ -1,0 +1,44 @@
+{
+  "name": "git-diagram",
+  "version": "1.0.4",
+  "description": "Create diagrams you can git",
+  "main": "lib/index.js",
+  "scripts": {
+    "test": "jest"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/sponbergbadger/git-diagram.git"
+  },
+  "keywords": [
+    "diagram",
+    "markdown",
+    "plain",
+    "text",
+    "git",
+    "scm",
+    "peer",
+    "review",
+    "version",
+    "control",
+    "sequence",
+    "activity",
+    "class",
+    "svg",
+    "scalable",
+    "vector",
+    "graphics",
+    "png",
+    "font-awesome"
+  ],
+  "author": "Hans Sponberg",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/sponbergbadger/git-diagram/issues"
+  },
+  "homepage": "https://github.com/sponbergbadger/git-diagram#readme",
+  "devDependencies": {
+    "jest": "^24.9.0",
+    "xml-js": "^1.6.11"
+  }
+}

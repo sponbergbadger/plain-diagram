@@ -1,0 +1,142 @@
+rect:
+          textRect: 100 50
+        pluginRect: 100 50
+       diagramRect: 100 50
+    textRectLegend:  15 15
+  pluginRectLegend:  15 15
+
+text:
+          tParser: Parser
+         tElement: Element
+  tLayoutProducer: Layout
+                   Producer
+        tRenderer: Renderer
+          tLayout: Element Size
+                   & Positions
+        tFElement: Finished
+                   Element
+         tDiagram: Diagram
+         tCreates: Creates
+          tUsedBy: Used
+                   By
+         tMakesUp: Makes
+                   Up
+               t1: 1
+               tM: m
+      tPluginCode: 40 30  Plugin Code
+        tArtifact: 40 30  Plugin Artifact
+
+shape:
+          parser: textBox(  pluginRect tParser )
+         element: textBox(    textRect tElement )
+  layoutProducer: textBox(  pluginRect tLayoutProducer )
+        renderer: textBox(  pluginRect tRenderer )
+          layout: textBox(    textRect tLayout )
+        fElement: textBox(    textRect tFElement )
+         diagram: textBox( diagramRect tDiagram )
+
+         creates: textLine( tCreates  0 -15 ) fill(-20)
+        creates2: textLine( tCreates  0 -25 ) fill(-20)
+          usedBy: textLine( tUsedBy  10  25 ) fill(-20)
+         usedBy2: textLine( tUsedBy  15 -25 ) fill(-20)
+         makesUp: textLine( tMakesUp  0  25 ) fill(-20)
+
+          legend: legend
+
+style:
+        pluginRect: fill: moccasin
+  pluginRectLegend: '
+          textRect: fill: lavender
+    textRectLegend: '
+       diagramRect: fill: mintcream
+                t1: font-style: italic
+                tM: '
+       tPluginCode: $align-left
+         tArtifact: '
+
+polygon:
+  >: 15,5 0,0 0,10
+
+line:
+   line: fill 1
+
+variable:
+  align-left: text-anchor: start
+
+layout:
+
+  parser                element
+
+
+
+
+
+         layoutProducer         renderer      fElement
+
+
+
+  legend                                      diagram
+
+                        layout
+
+*:2 from right of parser to left of element fillWidth:$path
+
+  creates
+
+* from bottom of element to top of layoutProducer fillWidth:$path
+
+  usedBy
+
+* from bottom of element plus 1,2 to top of renderer fillWidth:$path
+
+  usedBy2
+
+* from bottom of layoutProducer to top of layout fillWidth:$path
+
+  creates2
+
+* from top of layout to bottom of renderer fillWidth:$path
+
+  usedBy2
+
+* from right of renderer to left of fElement fillWidth:$path
+
+  creates
+
+* from bottom of fElement to top of diagram fillWidth:$path
+
+  makesUp
+
+* at bottom of fElement plus 15,15
+
+  tM
+
+* at top of diagram plus 15,-30
+
+  t1
+
+shape:textBox (rect text)
+
+  $rect
+
+* at $rect
+
+  $text
+
+shape:textLine (text dx dy)
+
+  line.>
+
+* at line plus $dx,$dy rotateTo:0
+
+  $text
+
+shape:legend
+
+spacer:
+  horizontal: 10
+
+layout:
+
+  pluginRectLegend tPluginCode
+    textRectLegend tArtifact

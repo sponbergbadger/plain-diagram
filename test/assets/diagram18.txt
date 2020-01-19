@@ -1,0 +1,20 @@
+rect:
+  textBoxRect: 100 50
+
+text:
+  two: Two
+
+shape:
+  textBox2: textBox(two) 70 35
+
+layout:
+
+  textBox2
+
+shape:textBox (text)
+
+  textBoxRect
+
+* at textBoxRect
+
+  $text

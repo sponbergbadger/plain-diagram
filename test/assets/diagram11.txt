@@ -1,0 +1,31 @@
+circle:
+  ref: 15
+    o:  7
+
+style:
+  ref: stroke-dasharray: 4
+    o: stroke: blue
+
+layout:
+
+  ref  ref  ref  ref ref
+
+* at ref
+
+  o
+
+* at left of ref[2]
+
+  o
+
+* at left of ref[3] with my left
+
+  o
+
+* at bottom-left of ref[4] with my bottom-right
+
+  o
+
+* at ref[5] with my top plus 0,7
+
+  o

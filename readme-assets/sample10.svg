@@ -1,0 +1,3 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE svg PUBLIC "-//W3C//DTD SVG 1.1//EN" "http://www.w3.org/Graphics/SVG/1.1/DTD/svg11.dtd">
+<svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" viewBox="0 0 130 110" width="130" height="110" style="background-color: #fff"><style>text { font: 12px sans-serif }rect { fill: none }ellipse { fill: none }.cloud { fill: white; stroke: black }</style><g><path d="M 30,30 m 10,9 a 20,20 1 0,0 0,40 h 50 a 20,20 1 0,0 0,-40 a 10,10 1 0,0 -15,-10 a 15,15 1 0,0 -35,10 z" class="cloud"></path></g><g><text x="65" y="55" dominant-baseline="middle" text-anchor="middle"><tspan x="65" dy="-0.6em">Account</tspan><tspan x="65" dy="1.2em">Service</tspan></text></g></svg>

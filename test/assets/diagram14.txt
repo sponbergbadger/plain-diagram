@@ -1,0 +1,25 @@
+circle:
+  o: 15
+
+line:
+  line: fill 1
+     l:    1 fill
+
+style:
+  line: stroke: lightgray
+
+text:
+  message: Message
+
+layout:
+          o
+
+  o
+
+* from o[2] to o
+
+  line
+
+* from o[2] to o rotateTo:0
+
+  message
