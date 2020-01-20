@@ -4,8 +4,13 @@ circle:
 textbox:
   box: 80 25 Hello, World!
 
+image:
+  i: 10 10 images/image.svg
+
 layout:
 
   o   o   o   o
 
      box
+
+     i

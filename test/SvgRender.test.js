@@ -2,6 +2,10 @@ const path = require('path')
 const fs = require('fs')
 const XmlJS = require('xml-js');
 
+if (!fs.existsSync(path.resolve(__dirname, 'assets/output'))) {
+  fs.mkdirSync(path.resolve(__dirname, 'assets/output'))
+}
+
 const SvgDiagramFactory = require('../lib/SvgDiagramFactory');
 
 const basePath = path.resolve(__dirname, 'assets')
