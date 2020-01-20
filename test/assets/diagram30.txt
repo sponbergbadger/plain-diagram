@@ -1,0 +1,12 @@
+circle:
+  o: 20
+
+line:
+   l: 110 1
+   j: 120 1
+
+layout:
+
+  o o
+  l--
+  j--

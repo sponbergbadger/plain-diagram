@@ -590,3 +590,11 @@ test('it should throw an error when the image width is zero', () => {
     parseDiagram('diagram29')
   }).toThrow();
 })
+
+test('it should fill columns evenly when they are already determined', () => {
+  const svg = parseDiagram('diagram30')
+  const o1 = getElement(svg, 'ellipse', 0)._attributes
+  const o2 = getElement(svg, 'ellipse', 1)._attributes
+  expect(o1.cx).toBe('50')
+  expect(o2.cx).toBe('130')
+})
