@@ -4,3 +4,7 @@ circle:
 layout:
 
   o
+
+* at o svg:transform="translate(25,25)"
+
+  o

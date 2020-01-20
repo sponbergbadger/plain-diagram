@@ -171,8 +171,6 @@ test('it should render an image with a remote url', () => {
 test('it should render an image in a shape with a local file', () => {
   const svg = parseDiagram('diagram27', true)
   const s = getElement(svg, 'g')
-  console.log(s)
-  console.log(s.g.image._attributes)
   expect(s.g.image._attributes.href).toBe('../images/image.svg')
 })
 
@@ -571,4 +569,24 @@ test('it should save to a file', () => {
   const js = XmlJS.xml2js(xml, {compact: true})
   const att = getElement(js.svg, 'ellipse')._attributes
   expect(att.cx).toBe('45')
+})
+
+test('it should render a layer\'s svg tag', () => {
+  const svg = parseDiagram('diagram1')
+  const att = getElement(svg, 'ellipse', 0, 1)._attributes
+  expect(att.cx).toBe('45')
+  expect(att.cy).toBe('45')
+  expect(svg.g[1]._attributes.transform).toBe('translate(25,25)')
+})
+
+test('it should throw an error when the image height is zero', () => {
+  expect(() => {
+    parseDiagram('diagram28')
+  }).toThrow();
+})
+
+test('it should throw an error when the image width is zero', () => {
+  expect(() => {
+    parseDiagram('diagram29')
+  }).toThrow();
 })
