@@ -1279,16 +1279,14 @@ const path = require('path')
 
 const SvgDiagramFactory = require('git-diagram').SvgDiagramFactory
 
-const basePath = path.resolve(__dirname, 'diagrams')
-const pluginPaths = [
-  path.resolve(__dirname, 'custom/Plugins.js'),
-]
+const basePath = 'diagrams'
+const pluginPaths = ['diagrams/js/Plugins.js']
 
 const diagramFactory = new SvgDiagramFactory(basePath, pluginPaths)
 
 function renderDiagram(filename) {
-  const input = path.resolve(basePath, filename + '.txt')
-  const output = path.resolve(__dirname, 'output', filename + '.svg')
+  const input = `${filename}.txt`
+  const output = path.resolve(basePath, 'output', `${filename}.svg`)
   diagramFactory.renderDiagram(input, output)
 }
 
