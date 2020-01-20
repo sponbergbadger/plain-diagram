@@ -1,0 +1,17 @@
+text:
+  one: One
+
+image:
+  i: 10 10 images/image.svg
+
+shape:
+  s: iconWithText(i one)
+
+layout:
+
+  s
+
+shape:iconWithText (icon text)
+
+  $icon
+  $text

@@ -168,6 +168,14 @@ test('it should render an image with a remote url', () => {
   expect(att.href).toBe('https://upload.wikimedia.org/wikipedia/commons/thumb/2/2f/Google_2015_logo.svg/2560px-Google_2015_logo.svg.png')
 })
 
+test('it should render an image in a shape with a local file', () => {
+  const svg = parseDiagram('diagram27', true)
+  const s = getElement(svg, 'g')
+  console.log(s)
+  console.log(s.g.image._attributes)
+  expect(s.g.image._attributes.href).toBe('../images/image.svg')
+})
+
 test('it should add a margin to the diagram size', () => {
   const diagram = parseDiagram('diagram1')._attributes
   expect(diagram.width).toBe('90')
