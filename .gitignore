@@ -4,3 +4,5 @@ output/*.svg
 coverage
 node_modules
 test/assets/output
+render.js
+diagrams
