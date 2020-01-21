@@ -3,6 +3,7 @@
 Create diagrams you can git
 
 [![Build Status](https://travis-ci.com/sponbergbadger/git-diagram.svg?branch=master)](https://travis-ci.com/sponbergbadger/git-diagram)
+[![Coverage Status](https://coveralls.io/repos/github/sponbergbadger/git-diagram/badge.svg?branch=master)](https://coveralls.io/github/sponbergbadger/git-diagram?branch=master)
 
 ## Installing
 
