@@ -671,3 +671,17 @@ test('it should align multiline text bottom-right', () => {
   expect(t.x).toBe('130')
   expect(t.y).toBe('130')
 })
+
+test('it should fill both width and height for a layer', () => {
+  const svg = parseDiagram('diagram32')
+  const r = getElement(svg, 'rect', 0, 1)._attributes
+  expect(r.width).toBe('100')
+  expect(r.height).toBe('100')
+})
+
+test('it should use default style for text alignment', () => {
+  const svg = parseDiagram('diagram33')
+  const t = getElement(svg, 'text')._attributes
+  expect(t.x).toBe('180')
+  expect(t.y).toBe('180')
+})
