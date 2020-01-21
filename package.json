@@ -38,6 +38,7 @@
   },
   "homepage": "https://github.com/sponbergbadger/git-diagram#readme",
   "devDependencies": {
+    "coveralls": "^3.0.9",
     "jest": "^24.9.0",
     "xml-js": "^1.6.11"
   }
