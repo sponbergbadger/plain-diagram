@@ -982,7 +982,7 @@ Horizontal alignment and vertical alignment can be controlled. This is a special
 
 To control the horizontal alignment, apply the css style ```text-anchor``` with a value of start, middle, or end, for left, center, and right aligned respectively.
 
-To control the vertical alignment, apply the css style ```dominant-baseline``` with a value of hanging, middle, or baseline, for top, middle, and bottom aligned respectively.
+To control the vertical alignment, apply the css style ```dominant-baseline``` with a value of hanging, middle, or alphabetic, for top, middle, and bottom aligned respectively.
 
 ## Plugins
 

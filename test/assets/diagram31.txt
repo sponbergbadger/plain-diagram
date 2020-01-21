@@ -1,0 +1,50 @@
+text:
+  a: 100 100 a
+             b
+  b: 100 100 a
+             b
+             c
+  c: 100 100 a
+             b
+             c
+             d
+  d: 100 100 a
+             b
+  e: 100 100 a
+             b
+             c
+  f: 100 100 a
+             b
+             c
+             d
+  g: 100 100 a
+             b
+  h: 100 100 a
+             b
+             c
+  i: 100 100 a
+             b
+             c
+             d
+
+style:
+  a: $left $top
+  b: $top
+  c: $right $top
+  d: $left
+  f: $right
+  g: $left $bottom
+  h: $bottom
+  i: $right $bottom
+
+variable:
+    left: text-anchor: start;
+   right: text-anchor: end;
+     top: dominant-baseline: hanging;
+  bottom: dominant-baseline: alphabetic;
+
+layout:
+
+  i h g
+  f e d
+  c b a

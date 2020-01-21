@@ -81,7 +81,7 @@ function renderText(obj, sizeAndPosition, styleBlock, svgBlock, context, styleDa
     cx -= width / 2
   }
 
-  const reAlignBottom = /dominant-baseline:\s*baseline/
+  const reAlignBottom = /dominant-baseline:\s*alphabetic/
   if (reAlignBottom.test(styleData)) {
     cy += width / 2
   }
@@ -91,7 +91,7 @@ function renderText(obj, sizeAndPosition, styleBlock, svgBlock, context, styleDa
   }
 
   // Any styles defined will override default class
-  let buf = `<text x="${round(cx)}" y="${round(cy)}" dominant-baseline="middle" text-anchor="middle"${styleBlock}>`
+  let buf = `<text x="${round(cx)}" y="${round(cy)}" ${styleBlock}>`
   const lineHeight = 1.2
   let dy = -1 * lineHeight / 2 * (obj.text.length - 1)
   for (var line of obj.text) {

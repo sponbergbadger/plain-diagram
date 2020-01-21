@@ -102,8 +102,6 @@ test('it should render text', () => {
   const {tspan, _attributes: att} = getElement(svg, 'text')
   expect(att.x).toBe('202.5')
   expect(att.y).toBe('85')
-  expect(att['dominant-baseline']).toBe('middle')
-  expect(att['text-anchor']).toBe('middle')
   expect(tspan._attributes.x).toBe('202.5')
   expect(tspan._attributes.dy).toBe('0em')
   expect(tspan._text).toBe('Hello, World!')
@@ -257,7 +255,7 @@ test('it should apply fonts', () => {
   expect(svg.defs.style._text).toMatch(font2)
   expect(svg.defs.style._text).toMatch(font3)
 
-  expect(svg.style._text).toMatch('text { font-family: Lobster }')
+  expect(svg.style._text).toMatch('text { font-family: Lobster')
   expect(svg.style._text).toMatch('.message2 { font-family: Roboto }')
   expect(svg.style._text).toMatch('.message3 { font-family: Indie Flower }')
 
@@ -601,4 +599,75 @@ test('it should fill columns evenly when they are already determined', () => {
   const o2 = getElement(svg, 'ellipse', 1)._attributes
   expect(o1.cx).toBe('50')
   expect(o2.cx).toBe('130')
+})
+
+test('it should align multiline text top-left', () => {
+  const svg = parseDiagram('diagram31')
+  const t = getElement(svg, 'text', 8)._attributes
+  expect(svg.style._text).toMatch(/\.a { text-anchor: start; dominant-baseline: hanging; }/)
+  expect(t.x).toBe('270')
+  expect(t.y).toBe('230')
+})
+
+test('it should align multiline text top', () => {
+  const svg = parseDiagram('diagram31')
+  const t = getElement(svg, 'text', 7)._attributes
+  expect(svg.style._text).toMatch(/\.b { dominant-baseline: hanging; }/)
+  expect(t.x).toBe('200')
+  expect(t.y).toBe('230')
+})
+
+test('it should align multiline text top-right', () => {
+  const svg = parseDiagram('diagram31')
+  const t = getElement(svg, 'text', 6)._attributes
+  expect(svg.style._text).toMatch(/\.c { text-anchor: end; dominant-baseline: hanging; }/)
+  expect(t.x).toBe('130')
+  expect(t.y).toBe('230')
+})
+
+test('it should align multiline text left', () => {
+  const svg = parseDiagram('diagram31')
+  const t = getElement(svg, 'text', 5)._attributes
+  expect(svg.style._text).toMatch(/\.d { text-anchor: start; }/)
+  expect(t.x).toBe('270')
+  expect(t.y).toBe('180')
+})
+
+test('it should align multiline text middle', () => {
+  const svg = parseDiagram('diagram31')
+  const t = getElement(svg, 'text', 4)._attributes
+  expect(t.x).toBe('200')
+  expect(t.y).toBe('180')
+})
+
+test('it should align multiline text right', () => {
+  const svg = parseDiagram('diagram31')
+  const t = getElement(svg, 'text', 3)._attributes
+  expect(svg.style._text).toMatch(/\.f { text-anchor: end; }/)
+  expect(t.x).toBe('130')
+  expect(t.y).toBe('180')
+})
+
+test('it should align multiline text bottom-left', () => {
+  const svg = parseDiagram('diagram31')
+  const t = getElement(svg, 'text', 2)._attributes
+  expect(svg.style._text).toMatch(/\.g { text-anchor: start; dominant-baseline: alphabetic; }/)
+  expect(t.x).toBe('270')
+  expect(t.y).toBe('130')
+})
+
+test('it should align multiline text bottom', () => {
+  const svg = parseDiagram('diagram31')
+  const t = getElement(svg, 'text', 1)._attributes
+  expect(svg.style._text).toMatch(/\.h { dominant-baseline: alphabetic; }/)
+  expect(t.x).toBe('200')
+  expect(t.y).toBe('130')
+})
+
+test('it should align multiline text bottom-right', () => {
+  const svg = parseDiagram('diagram31')
+  const t = getElement(svg, 'text', 0)._attributes
+  expect(svg.style._text).toMatch(/\.i { text-anchor: end; dominant-baseline: alphabetic; }/)
+  expect(t.x).toBe('130')
+  expect(t.y).toBe('130')
 })
