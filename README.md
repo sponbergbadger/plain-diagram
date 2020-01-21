@@ -2,6 +2,8 @@
 
 Create diagrams you can git
 
+[![Build Status](https://travis-ci.com/sponbergbadger/git-diagram.svg?branch=master)](https://travis-ci.com/sponbergbadger/git-diagram)
+
 ## Installing
 
 With [npm](https://nodejs.org/en/)
