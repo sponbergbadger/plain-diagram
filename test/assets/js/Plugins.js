@@ -6,13 +6,13 @@ registerParser(C.textbox, parserTextbox)
 registerLayoutProducer(C.textbox, layoutTextbox)
 registerRenderer(C.textbox, renderTextbox)
 
-function parserTextbox(line, rem, variables, spacer) {
+function parserTextbox(line, rem, variables, settings) {
   const {key, tokens, contentLines, content} = parseKeyContent(line, rem, 3, variables, true)
 
   const params = {}
 
-  let width = spacer['text-width']
-  let height = spacer['text-height']
+  let width = settings['text-width']
+  let height = settings['text-height']
   if (tokens[0] !== undefined
       && tokens[1] !== undefined
       && (!isNaN(tokens[0]) || tokens[0] === 'fill')

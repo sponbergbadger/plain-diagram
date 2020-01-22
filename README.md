@@ -332,6 +332,24 @@ style:
      line: stroke-dasharray: 4
 ```
 
+#### Grid Alignment
+
+By default, elements are aligned in the middle of their grid rectangle.
+
+The [Settings Special Section](#settings) can change the default for the entire grid.
+
+Specific elements can override the default settings. The format is ```$elementKey: $vertical-align $horizontal-align``` where:
+
+  - ```$vertical-align``` can be set to top, middle, or bottom
+  - ```$horizontal-align``` can be set to left, center, or right
+
+Example:
+
+```
+grid-align:
+  o: middle center
+```
+
 #### Fonts
 
 Custom font-families can be included in diagrams. A font can come from a local file (otf, ttf) or from a url. There is nice collection of [Google Fonts](https://fonts.google.com/) available online.
@@ -386,9 +404,9 @@ margin:
   bottom:  5
 ```
 
-#### Spacer
+#### Settings
 
-There are built in spacers that be overidden.
+There are built in settings that be overidden.
 
 For empty columns, the default width is 20 pixels
 
@@ -398,13 +416,19 @@ The default width of a text element is 5 pixels
 
 The default height of a text element is 30 pixels
 
+The default vertical grid alignment is middle. It can be set to: top, middle, bottom
+
+The default horizontal grid alignment is center. It can be set to: left, center, right
+
 Example:
 ```
-spacer:
-   horizontal: 20
-     vertical: 20
-   text-width:  5
-  text-height: 30
+settings:
+   horizontal-spacer: 20
+     vertical-spacer: 20
+          text-width:  5
+         text-height: 30
+          grid-align: center
+         grid-valign: middle
 ```
 
 #### SVG
@@ -926,7 +950,8 @@ All element types are available.
 
 All special sections are available with the following exceptions:
 
-  - A spacer is scoped to only the shape
+  - Settings scoped to only the shape
+      - spacers
   - Variable declarations are ignored
 
 Example:
@@ -948,8 +973,8 @@ layout:
 
 shape:tightCircles
 
-spacer:
-  horizontal: 5
+settings:
+  horizontal-spacer: 5
 
 layout:
 
@@ -1106,8 +1131,8 @@ The parser function is passed the following parameters, in order:
       - Be responsible when parsing this. If you remove all the lines from this array, then you must handle them.
   - ```variables```
       - Map: A map of variable name to value. This is the list of variables declared in the git-diagram special section.
-  - ```spacer```
-      - Map: A map of spacers. This is the list of spacers that have defaults and can be overridden in the git-diagram special section.
+  - ```settings```
+      - Map: A map of settings. This is the list of settings that have defaults and can be overridden in the git-diagram special section.
 
 ###### Output
 
