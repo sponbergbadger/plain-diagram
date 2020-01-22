@@ -36,11 +36,11 @@ image:
    i: 10 10 images/image.svg
   i2: 10 10 https://upload.wikimedia.org/wikipedia/commons/thumb/2/2f/Google_2015_logo.svg/2560px-Google_2015_logo.svg.png
 
-style:
-  t3: text-anchor: start
-  t4: text-anchor: end
-  t5: dominant-baseline: hanging
-  t6: dominant-baseline: alphabetic
+grid-align:
+  t3: middle left
+  t4: middle right
+  t5:    top center
+  t6: bottom center
 
 layout:
 

@@ -255,7 +255,7 @@ test('it should apply fonts', () => {
   expect(svg.defs.style._text).toMatch(font2)
   expect(svg.defs.style._text).toMatch(font3)
 
-  expect(svg.style._text).toMatch('text { font-family: Lobster')
+  expect(svg.style._text).toMatch('text { dominant-baseline: middle; text-anchor: middle; font-family: Lobster')
   expect(svg.style._text).toMatch('.message2 { font-family: Roboto }')
   expect(svg.style._text).toMatch('.message3 { font-family: Indie Flower }')
 

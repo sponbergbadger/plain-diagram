@@ -1,8 +1,9 @@
 text:
   a: 150 150 Some Text
 
-default-style:
-  text: text-anchor: end; dominant-baseline: alphabetic
+settings:
+   grid-align: right
+  grid-valign: bottom
 
 layout:
 

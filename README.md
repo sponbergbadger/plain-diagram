@@ -336,18 +336,21 @@ style:
 
 By default, elements are aligned in the middle of their grid rectangle.
 
-The [Settings Special Section](#settings) can change the default for the entire grid.
+The [Settings](#settings) Section can change the default for the entire grid.
 
 Specific elements can override the default settings. The format is ```$elementKey: $vertical-align $horizontal-align``` where:
 
   - ```$vertical-align``` can be set to top, middle, or bottom
   - ```$horizontal-align``` can be set to left, center, or right
 
+As in [Styling](#styling), a ```'``` will carry forward the definition from the above line.
+
 Example:
 
 ```
 grid-align:
-  o: middle center
+   o: middle center
+  o2: '
 ```
 
 #### Fonts
@@ -1006,11 +1009,16 @@ Parameters that are fillable as described in [Dynamic Width And Height](#dynamic
 
 Text is aligned by default with the element's center positioned over its grid point center.
 
-Horizontal alignment and vertical alignment can be controlled. This is a special case; it is considered styling by git-diagram, and is handled by the renderer, which has to adjust the x and y coordinates for the text. As css properties for text alignment need to be declared in the styles special section, the renderer picks up on those to make the x and y adjustments. This keeps in line with the goal of brevity.
+Horizontal alignment and vertical alignment can be controlled. This is a special case when handling text, since two things must be done in coordination.
 
-To control the horizontal alignment, apply the css style ```text-anchor``` with a value of start, middle, or end, for left, center, and right aligned respectively.
+  1. Adjust the x,y coordinate position
+  2. Set the css property
 
-To control the vertical alignment, apply the css style ```dominant-baseline``` with a value of hanging, middle, or alphabetic, for top, middle, and bottom aligned respectively.
+Svg uses the css style ```text-anchor``` to control horizontal alignment with a value of start, middle, or end, for left, center, and right aligned respectively.
+
+Svg uses the css style ```dominant-baseline``` to control the vertical alignment with a value of hanging, middle, or alphabetic, for top, middle, and bottom aligned respectively.
+
+When the author uses [Grid Alignment](#grid-alignment), git-diagram will do both of those things. Css will be prefixed to the element's style class definition. Therefore, it is not necessary for the author to use the above properties in the style section. (If the author does also declare those css properties, they will override the settings that git-diagram has determined).
 
 ## Plugins
 
