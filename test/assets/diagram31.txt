@@ -27,21 +27,19 @@ text:
              c
              d
 
-style:
-  a: $left $top
-  b: $top
-  c: $right $top
-  d: $left
-  f: $right
-  g: $left $bottom
-  h: $bottom
-  i: $right $bottom
+grid-align:
+  a:   $top $left
+  b:    top center
+  c:    top right
+  d: middle left
+  f: middle right
+  g: bottom left
+  h: bottom center
+  i: bottom right
 
 variable:
-    left: text-anchor: start;
-   right: text-anchor: end;
-     top: dominant-baseline: hanging;
-  bottom: dominant-baseline: alphabetic;
+   top: top
+  left: left
 
 layout:
 

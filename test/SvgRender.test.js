@@ -255,7 +255,7 @@ test('it should apply fonts', () => {
   expect(svg.defs.style._text).toMatch(font2)
   expect(svg.defs.style._text).toMatch(font3)
 
-  expect(svg.style._text).toMatch('text { font-family: Lobster')
+  expect(svg.style._text).toMatch('text { dominant-baseline: middle; text-anchor: middle; font-family: Lobster')
   expect(svg.style._text).toMatch('.message2 { font-family: Roboto }')
   expect(svg.style._text).toMatch('.message3 { font-family: Indie Flower }')
 
@@ -380,11 +380,11 @@ test('that elements can be referred to in layers by z-index', () => {
   const svg = parseDiagram('diagram12')
   const line = getElement(svg, 'line', 0, 2)._attributes
 
-  expect(svg.g[2]._attributes.transform).toBe('rotate(116.854 100 80.25)')
-  expect(line.x1).toBe("77.863")
-  expect(line.y1).toBe("80.25")
-  expect(line.x2).toBe("122.137")
-  expect(line.y2).toBe("80.25")
+  expect(svg.g[2]._attributes.transform).toBe('rotate(116.565 100 80)')
+  expect(line.x1).toBe("77.639")
+  expect(line.y1).toBe("80")
+  expect(line.x2).toBe("122.361")
+  expect(line.y2).toBe("80")
 })
 
 test('it should render layers by z-index', () => {
@@ -684,4 +684,17 @@ test('it should use default style for text alignment', () => {
   const t = getElement(svg, 'text')._attributes
   expect(t.x).toBe('180')
   expect(t.y).toBe('180')
+})
+
+test('that text aligns with the grid', () => {
+  const svg = parseDiagram('diagram34')
+  const t1 = getElement(svg, 'text')._attributes
+  const t2 = getElement(svg, 'text', 1)._attributes
+  const t3 = getElement(svg, 'text', 2)._attributes
+  expect(t1.x).toBe('330')
+  expect(t1.y).toBe('130')
+  expect(t2.x).toBe('180')
+  expect(t2.y).toBe('130')
+  expect(t3.x).toBe('405')
+  expect(t3.y).toBe('180')
 })

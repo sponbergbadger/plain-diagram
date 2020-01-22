@@ -8,9 +8,9 @@ margin:
    right:  15
   bottom:   5
 
-spacer:
-  vertical: 7
-  horizontal: 3
+settings:
+  vertical-spacer: 7
+  horizontal-spacer: 3
 
 style:
    o: fill: $my-purple

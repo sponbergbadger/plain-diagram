@@ -1,0 +1,23 @@
+text:
+   t: Top Right
+  t2: Bottom
+      Left
+  t3: Centered Text
+  t4: Top Left
+
+rect:
+  r: 150 100
+
+settings:
+   grid-align: right
+  grid-valign: top
+
+grid-align:
+  t2: bottom left
+  t3: middle center
+
+layout:
+
+  r   t2
+  t.r.t3.r
+  r   r

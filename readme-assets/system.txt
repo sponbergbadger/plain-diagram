@@ -133,8 +133,8 @@ shape:textLine (text dx dy)
 
 shape:legend
 
-spacer:
-  horizontal: 10
+settings:
+  horizontal-spacer: 10
 
 layout:
 

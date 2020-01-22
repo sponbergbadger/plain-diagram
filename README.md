@@ -332,6 +332,27 @@ style:
      line: stroke-dasharray: 4
 ```
 
+#### Grid Alignment
+
+By default, elements are aligned in the middle of their grid rectangle.
+
+The [Settings](#settings) Section can change the default for the entire grid.
+
+Specific elements can override the default settings. The format is ```$elementKey: $vertical-align $horizontal-align``` where:
+
+  - ```$vertical-align``` can be set to top, middle, or bottom
+  - ```$horizontal-align``` can be set to left, center, or right
+
+As in [Styling](#styling), a ```'``` will carry forward the definition from the above line.
+
+Example:
+
+```
+grid-align:
+   o: middle center
+  o2: '
+```
+
 #### Fonts
 
 Custom font-families can be included in diagrams. A font can come from a local file (otf, ttf) or from a url. There is nice collection of [Google Fonts](https://fonts.google.com/) available online.
@@ -386,9 +407,9 @@ margin:
   bottom:  5
 ```
 
-#### Spacer
+#### Settings
 
-There are built in spacers that be overidden.
+There are built in settings that be overidden.
 
 For empty columns, the default width is 20 pixels
 
@@ -398,13 +419,19 @@ The default width of a text element is 5 pixels
 
 The default height of a text element is 30 pixels
 
+The default vertical grid alignment is middle. It can be set to: top, middle, bottom
+
+The default horizontal grid alignment is center. It can be set to: left, center, right
+
 Example:
 ```
-spacer:
-   horizontal: 20
-     vertical: 20
-   text-width:  5
-  text-height: 30
+settings:
+   horizontal-spacer: 20
+     vertical-spacer: 20
+          text-width:  5
+         text-height: 30
+          grid-align: center
+         grid-valign: middle
 ```
 
 #### SVG
@@ -926,7 +953,8 @@ All element types are available.
 
 All special sections are available with the following exceptions:
 
-  - A spacer is scoped to only the shape
+  - Settings scoped to only the shape
+      - spacers
   - Variable declarations are ignored
 
 Example:
@@ -948,8 +976,8 @@ layout:
 
 shape:tightCircles
 
-spacer:
-  horizontal: 5
+settings:
+  horizontal-spacer: 5
 
 layout:
 
@@ -981,11 +1009,16 @@ Parameters that are fillable as described in [Dynamic Width And Height](#dynamic
 
 Text is aligned by default with the element's center positioned over its grid point center.
 
-Horizontal alignment and vertical alignment can be controlled. This is a special case; it is considered styling by git-diagram, and is handled by the renderer, which has to adjust the x and y coordinates for the text. As css properties for text alignment need to be declared in the styles special section, the renderer picks up on those to make the x and y adjustments. This keeps in line with the goal of brevity.
+Horizontal alignment and vertical alignment can be controlled. This is a special case when handling text, since two things must be done in coordination.
 
-To control the horizontal alignment, apply the css style ```text-anchor``` with a value of start, middle, or end, for left, center, and right aligned respectively.
+  1. Adjust the x,y coordinate position
+  2. Set the css property
 
-To control the vertical alignment, apply the css style ```dominant-baseline``` with a value of hanging, middle, or alphabetic, for top, middle, and bottom aligned respectively.
+Svg uses the css style ```text-anchor``` to control horizontal alignment with a value of start, middle, or end, for left, center, and right aligned respectively.
+
+Svg uses the css style ```dominant-baseline``` to control the vertical alignment with a value of hanging, middle, or alphabetic, for top, middle, and bottom aligned respectively.
+
+When the author uses [Grid Alignment](#grid-alignment), git-diagram will do both of those things. Css will be prefixed to the element's style class definition. Therefore, it is not necessary for the author to use the above properties in the style section. (If the author does also declare those css properties, they will override the settings that git-diagram has determined).
 
 ## Plugins
 
@@ -1106,8 +1139,8 @@ The parser function is passed the following parameters, in order:
       - Be responsible when parsing this. If you remove all the lines from this array, then you must handle them.
   - ```variables```
       - Map: A map of variable name to value. This is the list of variables declared in the git-diagram special section.
-  - ```spacer```
-      - Map: A map of spacers. This is the list of spacers that have defaults and can be overridden in the git-diagram special section.
+  - ```settings```
+      - Map: A map of settings. This is the list of settings that have defaults and can be overridden in the git-diagram special section.
 
 ###### Output
 
