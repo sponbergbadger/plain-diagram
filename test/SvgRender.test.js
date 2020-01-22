@@ -380,11 +380,11 @@ test('that elements can be referred to in layers by z-index', () => {
   const svg = parseDiagram('diagram12')
   const line = getElement(svg, 'line', 0, 2)._attributes
 
-  expect(svg.g[2]._attributes.transform).toBe('rotate(116.854 100 80.25)')
-  expect(line.x1).toBe("77.863")
-  expect(line.y1).toBe("80.25")
-  expect(line.x2).toBe("122.137")
-  expect(line.y2).toBe("80.25")
+  expect(svg.g[2]._attributes.transform).toBe('rotate(116.565 100 80)')
+  expect(line.x1).toBe("77.639")
+  expect(line.y1).toBe("80")
+  expect(line.x2).toBe("122.361")
+  expect(line.y2).toBe("80")
 })
 
 test('it should render layers by z-index', () => {
