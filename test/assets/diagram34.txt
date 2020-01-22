@@ -1,0 +1,22 @@
+text:
+   t: Top Right
+  t2: Bottom
+      Left
+  t3: Centered Text
+  t4: Top Left
+
+rect:
+  r: 150 100
+
+default-style:
+  text: text-anchor: end; dominant-baseline: hanging
+
+style:
+  t2: text-anchor: start; dominant-baseline: alphabetic
+  t3: text-anchor: middle; dominant-baseline: middle
+
+layout:
+
+  r   t2
+  t.r.t3.r
+  r   r

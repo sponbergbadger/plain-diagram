@@ -8,16 +8,17 @@ registerRenderer(C.textbox, renderTextbox)
 
 function parserTextbox(line, rem, variables, spacer) {
   const {key, tokens, contentLines, content} = parseKeyContent(line, rem, 3, variables, true)
+
   const params = {}
 
   let width = spacer['text-width']
   let height = spacer['text-height']
   if (tokens[0] !== undefined
       && tokens[1] !== undefined
-      && !isNaN(tokens[0])
-      && !isNaN(tokens[1])) {
-    width = parseFloat(tokens[0])
-    height = parseFloat(tokens[1])
+      && (!isNaN(tokens[0]) || tokens[0] === 'fill')
+      && (!isNaN(tokens[1]) || tokens[1] === 'fill')) {
+    width = fillOrFloat(Util.extractParams(tokens[0], params, 'fillWidth'), true)
+    height = fillOrFloat(Util.extractParams(tokens[1], params, 'fillHeight'), true)
     let firstLineArr = contentLines[0].split(' ')
     let count = 0
     while (true) {

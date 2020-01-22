@@ -685,3 +685,16 @@ test('it should use default style for text alignment', () => {
   expect(t.x).toBe('180')
   expect(t.y).toBe('180')
 })
+
+test('that text aligns with the grid', () => {
+  const svg = parseDiagram('diagram34')
+  const t1 = getElement(svg, 'text')._attributes
+  const t2 = getElement(svg, 'text', 1)._attributes
+  const t3 = getElement(svg, 'text', 2)._attributes
+  expect(t1.x).toBe('330')
+  expect(t1.y).toBe('130')
+  expect(t2.x).toBe('180')
+  expect(t2.y).toBe('130')
+  expect(t3.x).toBe('405')
+  expect(t3.y).toBe('180')
+})
