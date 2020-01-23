@@ -792,7 +792,7 @@ test('it should make the path on the middle point', () => {
 })
 
 test('it should index into shape elements', () => {
-  const svg = parseDiagram('diagram39', true)
+  const svg = parseDiagram('diagram39')
   expect(svg.g[1]._attributes.transform).toBe('rotate(112.834 80 92.5)')
   expect(svg.g[2]._attributes.transform).toBe('rotate(67.166 120 92.5)')
   expect(svg.g[3]._attributes.transform).toBe('rotate(9.728 202.5 60)')
@@ -803,4 +803,16 @@ test('it should index into shape elements', () => {
   expect(line.y1).toBe('0.5')
   expect(line.x2).toBe('177.553')
   expect(line.y2).toBe('0.5')
+})
+
+test('it should fill a minimum when the space is less than the minimum', () => {
+  const svg = parseDiagram('diagram40', true)
+  const r = getElement(svg, 'rect')._attributes
+  const l1 = getElement(svg, 'line')._attributes
+  const l2 = getElement(svg, 'line', 1)._attributes
+  const l3 = getElement(svg, 'line', 2)._attributes
+  expect(r.x).toBe('55')
+  expect(parseFloat(l1.x2) - parseFloat(l1.x1)).toBe(30)
+  expect(parseFloat(l2.x2) - parseFloat(l2.x1)).toBe(50)
+  expect(parseFloat(l3.x2) - parseFloat(l3.x1)).toBe(40)
 })
