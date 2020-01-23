@@ -79,31 +79,31 @@ layout:
 
                         layout
 
-*:2 from right of parser to left of element fillWidth:$path
+*:2 from right of parser to left of element
 
   creates
 
-* from bottom of element to top of layoutProducer fillWidth:$path
+* from bottom of element to top of layoutProducer
 
   usedBy
 
-* from bottom of element plus 1,2 to top of renderer fillWidth:$path
+* from bottom of element plus 1,2 to top of renderer
 
   usedBy2
 
-* from bottom of layoutProducer to top of layout fillWidth:$path
+* from bottom of layoutProducer to top of layout
 
   creates2
 
-* from top of layout to bottom of renderer fillWidth:$path
+* from top of layout to bottom of renderer
 
   usedBy2
 
-* from right of renderer to left of fElement fillWidth:$path
+* from right of renderer to left of fElement
 
   creates
 
-* from bottom of fElement to top of diagram fillWidth:$path
+* from bottom of fElement to top of diagram
 
   makesUp
 

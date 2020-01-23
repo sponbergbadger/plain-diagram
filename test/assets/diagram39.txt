@@ -27,7 +27,7 @@ layout:
 
   line
 
-* from right of o to left of o[2] fillWidth:$path
+* from right of o to left of o[2]
 
   textline
 

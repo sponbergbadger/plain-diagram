@@ -801,13 +801,22 @@ The options for fillWidth are: ```$width```, ```$l:Z:width```, ```$path```, ```$
   - $width matches the width of the default layer
   - $l:Z:width matches the width of a layer by z-index, replace Z with an integer
   - $path matches the distance of the path
-  - $colspan matches the distance available that has not already been taken in that layer's column span in the grid. This is the default option.
+  - $colspan matches the distance available that has not already been taken in that layer's column span in the grid.
+  - A fixed values in pixels is a float
+
+The default fillWidth is:
+
+  - When on a path: $path
+  - When not on a path: $colspan
 
 The options for fillHeight are: ```$height```,  ```$l:Z:$height```,  ```$rowspan```, or a fixed value in pixels.
 
   - $height matches the height of the default layer
   - $l:Z:height matches the height of a layer by z-index, replace Z with an integer
-  - $rowspan matches the distance available that has not already been taken in that layer's row span in the grid. This is the default option.
+  - $rowspan matches the distance available that has not already been taken in that layer's row span in the grid.
+  - A fixed value in pixels is a float
+
+The default fillHeight is $rowspan
 
 Example:
 
