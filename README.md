@@ -1193,6 +1193,19 @@ function parserCircle(line, rem, variables) {
 
 ##### Layout Producer Function Contract
 
+A Layout Producer is optional.
+
+If one is not provided, the library will calculate the following properties as follows:
+
+  - ```cx```
+      - Float: the x coordinate of the center of this element's grid rectangle
+  - ```cy```
+      - Float: the y coordinate of the middle of this element's grid rectangle
+  - ```width```
+      - The element's width
+  - ```height```
+      - The element's height
+
 ###### Input
 
 The layout producer function is passed the following parameters, in order:
@@ -1212,7 +1225,7 @@ The layout producer function is passed the following parameters, in order:
 
 ###### Output
 
-The parser function must return an object that contains the following properties:
+The parser function must return an object. It can contain any of the following properties. If any of the following properties are missing, they will be set to the defaults described above.
 
   - ```cx```
       - Float: the x coordinate of the center of this element
@@ -1231,16 +1244,7 @@ Example:
 registerLayoutProducer(C.ellipse, layoutEllipse)
 
 function layoutEllipse(obj, position) {
-  const {x, y, colWidth, rowHeight} = position
-
-  let cx = x + colWidth / 2
-  let cy = y + rowHeight / 2
-
   return {
-    cx,
-    cy,
-    width: obj.width,
-    height: obj.height,
     rx: obj.width / 2,
     ry: obj.height / 2,
   }
