@@ -3,7 +3,7 @@ text:
   t2: Bottom
       Left
   t3: Centered Text
-  t4: Top Left
+  t4: Another Bottom Left
 
 rect:
   r: 150 100
@@ -14,6 +14,7 @@ settings:
 
 grid-align:
   t2: bottom left
+  t4: '
   t3: middle center
 
 layout:
@@ -21,3 +22,4 @@ layout:
   r   t2
   t.r.t3.r
   r   r
+      t4 r

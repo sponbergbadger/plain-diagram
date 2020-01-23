@@ -173,7 +173,22 @@ test('it should render an image with a remote url', () => {
 test('it should render an image in a shape with a local file', () => {
   const svg = parseDiagram('diagram27', true)
   const s = getElement(svg, 'g')
-  expect(s.g.image._attributes.href).toBe('../images/image.svg')
+  const i = getElement(s, 'image')._attributes
+  expect(i.href).toBe('../images/image.svg')
+})
+
+test('it should apply spacer settings to a shape', () => {
+  const svg = parseDiagram('diagram27')
+  const s = getElement(svg, 'g')
+  const i1 = getElement(s, 'image')._attributes
+  const i2 = getElement(s, 'image', 1)._attributes
+  const t = getElement(s, 'text')._attributes
+  expect(i1.x).toBe('0')
+  expect(i1.y).toBe('0')
+  expect(i2.x).toBe('15')
+  expect(i2.y).toBe('0')
+  expect(t.x).toBe('5')
+  expect(t.y).toBe('75')
 })
 
 test('it should add a margin to the diagram size', () => {
@@ -532,6 +547,15 @@ test('it should show a debug grid', () => {
   expect(rect9.style).toMatch('fill: lightblue')
 })
 
+test('it should show a debug grid for shape', () => {
+  const svg = parseDiagram('diagram20')
+  const shape = getElement(svg, 'g', 0, 1)
+  const rect1 = getElement(shape, 'rect', 0)._attributes
+  const rect2 = getElement(shape, 'rect', 1)._attributes
+  expect(rect1.style).toMatch('fill: lightgray')
+  expect(rect2.style).toMatch('fill: lightpink')
+})
+
 test('it should throw an error if an element is not defined', () => {
   expect(() => {
     parseDiagram('diagram21')
@@ -691,10 +715,92 @@ test('that text aligns with the grid', () => {
   const t1 = getElement(svg, 'text')._attributes
   const t2 = getElement(svg, 'text', 1)._attributes
   const t3 = getElement(svg, 'text', 2)._attributes
+  const t4 = getElement(svg, 'text', 3)._attributes
   expect(t1.x).toBe('330')
   expect(t1.y).toBe('130')
   expect(t2.x).toBe('180')
   expect(t2.y).toBe('130')
   expect(t3.x).toBe('405')
   expect(t3.y).toBe('180')
+  expect(t4.x).toBe('330')
+  expect(t4.y).toBe('430')
+  expect(svg.style._text).toMatch(/\.t4 { text-anchor: start; dominant-baseline: alphabetic; }/)
+})
+
+test('it should translate diagrams that have elements in the negative coordinate space', () => {
+  const svg = parseDiagram('diagram35')
+  const e = getElement(svg, 'ellipse', 0, 1)._attributes
+  expect(svg._attributes.viewBox).toBe('-175 -200 385 360')
+  expect(e.cx).toBe('-95')
+  expect(e.cy).toBe('-120')
+})
+
+test('WHEN there are no newlines, it should apply no vertical space before the first element in shape', () => {
+  const svg = parseDiagram('diagram36')
+  const s1 = getElement(svg, 'g')
+  const s3 = getElement(svg, 'g', 2)
+  const e1 = getElement(s1, 'ellipse')._attributes
+  const e3 = getElement(s3, 'ellipse')._attributes
+  expect(s1._attributes.transform).toBe('translate(30 55)')
+  expect(s3._attributes.transform).toBe('translate(110 55)')
+  expect(e1.cy).toBe('10')
+  expect(e3.cy).toBe('10')
+})
+
+test('WHEN there are two newlines, it should apply vertical space before the first element in shape', () => {
+  const svg = parseDiagram('diagram36')
+  const s2 = getElement(svg, 'g', 1)
+  const s4 = getElement(svg, 'g', 3)
+  const e2 = getElement(s2, 'ellipse')._attributes
+  const e4 = getElement(s4, 'ellipse')._attributes
+  expect(s2._attributes.transform).toBe('translate(70 30)')
+  expect(s4._attributes.transform).toBe('translate(150 45)')
+  expect(e2.cy).toBe('60')
+  expect(e4.cy).toBe('30')
+})
+
+test('it should apply grid-align to shapes', () => {
+  const svg = parseDiagram('diagram37')
+  const s1 = getElement(svg, 'g', 0)
+  const s2 = getElement(svg, 'g', 1)
+  const e1 = getElement(s1, 'ellipse')._attributes
+  const e2 = getElement(s2, 'ellipse')._attributes
+  expect(s1._attributes.transform).toBe('translate(310 210)')
+  expect(s2._attributes.transform).toBe('translate(330 230)')
+  expect(e1.cx).toBe('10')
+  expect(e1.cy).toBe('10')
+  expect(e2.cx).toBe('10')
+  expect(e2.cy).toBe('10')
+})
+
+test('it should make the path on the start point', () => {
+  const svg = parseDiagram('diagram38')
+  const l = getElement(svg, 'line', 0, 1)._attributes
+  expect(l.x1).toBe('45')
+})
+
+test('it should make the path on the end point', () => {
+  const svg = parseDiagram('diagram38')
+  const l = getElement(svg, 'line', 0, 2)._attributes
+  expect(l.x1).toBe('280')
+})
+
+test('it should make the path on the middle point', () => {
+  const svg = parseDiagram('diagram38')
+  const l = getElement(svg, 'line', 0, 3)._attributes
+  expect(l.x1).toBe('432.5')
+})
+
+test('it should index into shape elements', () => {
+  const svg = parseDiagram('diagram39', true)
+  expect(svg.g[1]._attributes.transform).toBe('rotate(112.834 80 92.5)')
+  expect(svg.g[2]._attributes.transform).toBe('rotate(67.166 120 92.5)')
+  expect(svg.g[3]._attributes.transform).toBe('rotate(9.728 202.5 60)')
+  const shape = svg.g[3].g
+  expect(shape._attributes.transform).toBe('translate(113.724 59.5)')
+  const line = getElement(shape, 'line')._attributes
+  expect(line.x1).toBe('0')
+  expect(line.y1).toBe('0.5')
+  expect(line.x2).toBe('177.553')
+  expect(line.y2).toBe('0.5')
 })

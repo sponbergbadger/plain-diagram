@@ -1,0 +1,37 @@
+circle:
+  o: 10
+
+shape:
+  s1: shape1
+  s2: shape2
+  s3: shape3
+  s4: shape4
+
+layout:
+  s1 s2 s3 s4
+
+shape:shape1
+
+settings:
+  vertical-spacer: 5
+
+layout:
+  o
+
+shape:shape2
+
+settings:
+  vertical-spacer: 50
+
+layout:
+
+
+  o
+
+shape:shape3
+  o
+
+shape:shape4
+
+
+  o

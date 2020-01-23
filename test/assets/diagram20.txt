@@ -5,12 +5,21 @@ circle:
 // Ignored
 
 svg:
- o: display="none"
+  o: display="none"
+
+shape:
+  s: s
 
 debug:
-  showGrid: true
+       showGrid: true
+  showShapeGrid: true
 
 layout:
 
   o  o2 o2 o2
   o2 o2 o2 o2
+  s
+
+shape:s
+
+  o2
