@@ -1,0 +1,23 @@
+circle:
+   o: 15
+  o2: 10
+
+line:
+  line: 75 1
+
+layout:
+
+   o       o       o
+         o       o       o
+
+* from o to o[4] on start point with my left
+
+  line
+
+* from o[2] to o[5] on end point with my right
+
+  line
+
+* from o[3] to o[6] on center point
+
+  line

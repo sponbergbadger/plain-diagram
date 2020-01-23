@@ -1,0 +1,24 @@
+circle:
+  o: 10
+
+rect:
+  r: 150 100
+
+shape:
+   s: shape
+  s2: shape
+
+grid-align:
+   s: bottom right
+  s2:    top left
+
+layout:
+
+    r
+  r.s
+     .s2.r
+      r
+
+shape:shape
+
+  o

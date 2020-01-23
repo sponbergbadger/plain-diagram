@@ -1,0 +1,13 @@
+rect:
+  r: 150 100
+
+circle:
+  o: 50
+
+layout:
+
+  r
+
+* at r plus -200,-200
+
+  o

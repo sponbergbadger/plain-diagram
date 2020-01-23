@@ -1,0 +1,44 @@
+circle:
+   o: 15
+  o2: 30
+
+line:
+  line: fill 1
+
+text:
+  one: Message
+
+shape:
+         s: s
+  textline: textLine(one 10 -15) fill
+
+layout:
+
+  o
+         o
+
+  s
+
+* from o to s:o2
+
+  line
+
+* from o to s:o2[2]
+
+  line
+
+* from right of o to left of o[2] fillWidth:$path
+
+  textline
+
+shape:s
+
+ o2 o2
+
+shape:textLine (text dx dy)
+
+  line
+
+* at line plus $dx,$dy rotateTo:0
+
+  $text

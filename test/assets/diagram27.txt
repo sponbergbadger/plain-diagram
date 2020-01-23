@@ -13,5 +13,12 @@ layout:
 
 shape:iconWithText (icon text)
 
-  $icon
+settings:
+    vertical-spacer: 50
+  horizontal-spacer: 5
+
+layout:
+
+  $icon $icon
+
   $text
