@@ -504,6 +504,10 @@ To declare that an element's dimension should fill available space, the keyword 
 
 When using fill, an optional offset can be specified in parenthesis. For example, to fill all available space minus 20 pixels, that is specified with ```fill(-20)```.
 
+When using fill, an optional minimum can be specified as the second parameter in parenthesis. When the available space is less than the minimum, the available space will be increased to the minimum. For example, to set a minimum of 30 pixels, that is specified with ```fill(0 30)```.
+
+Both parameters can be used together. For example, when specifying ```fill(-10 30)```, the actual minimum will be 20, and if the available space is 100, it will take 90.
+
 By default, when an element attempts to fill all available space, the available space is limited to the size of the layer that contains the element. By default, a layer's size is only as big as it takes to lay out fixed size elements. A layer, however, can have its size specified. In that case, there may be additional space available for an element to fill. More on that in [Layers](#layers).
 
 Example:
@@ -1406,7 +1410,7 @@ text:
 
 #### Variables
 
-Use meaningful variables as a way to describe meaning.
+Use variables as a way to describe meaning.
 
 Example:
 
@@ -1440,7 +1444,7 @@ Consider using characters in the layout that hint at their shape.
 Examples:
 
   - ```>``` for a right-pointing triangle
-  - ```^``` for a upwards triangle
+  - ```^``` for an upwards triangle
   - ```v``` for a downwards triangle
   - series of ```---``` for a horizontal line
   - series of ```|``` for a vertical line and pairs nicely with the letter ```l```
