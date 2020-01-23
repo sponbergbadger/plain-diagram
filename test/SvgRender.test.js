@@ -805,8 +805,8 @@ test('it should index into shape elements', () => {
   expect(line.y2).toBe('0.5')
 })
 
-test('it should fill a minimum when the space is less than the minimum', () => {
-  const svg = parseDiagram('diagram40', true)
+test('it should fill a minimum horizontal when the space is less than the minimum', () => {
+  const svg = parseDiagram('diagram40')
   const r = getElement(svg, 'rect')._attributes
   const l1 = getElement(svg, 'line')._attributes
   const l2 = getElement(svg, 'line', 1)._attributes
@@ -815,4 +815,16 @@ test('it should fill a minimum when the space is less than the minimum', () => {
   expect(parseFloat(l1.x2) - parseFloat(l1.x1)).toBe(30)
   expect(parseFloat(l2.x2) - parseFloat(l2.x1)).toBe(50)
   expect(parseFloat(l3.x2) - parseFloat(l3.x1)).toBe(40)
+})
+
+test('it should fill a minimum vertical when the space is less than the minimum', () => {
+  const svg = parseDiagram('diagram41')
+  const r2 = getElement(svg, 'rect', 1)._attributes
+  const l1 = getElement(svg, 'line')._attributes
+  const l2 = getElement(svg, 'line', 1)._attributes
+  const l3 = getElement(svg, 'line', 2)._attributes
+  expect(r2.y).toBe('60')
+  expect(parseFloat(l1.y2) - parseFloat(l1.y1)).toBe(30)
+  expect(parseFloat(l2.y2) - parseFloat(l2.y1)).toBe(50)
+  expect(parseFloat(l3.y2) - parseFloat(l3.y1)).toBe(40)
 })

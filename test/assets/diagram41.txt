@@ -1,0 +1,19 @@
+rect:
+   r:  5 5
+  r2: 50 50
+
+line:
+   l: 1 fill(0 30)
+  l2: 1 fill(-10 30)
+
+settings:
+  grid-valign: bottom
+
+layout:
+
+   r
+   l.r
+       r2
+       l .r2
+             r2
+             l2.r2
