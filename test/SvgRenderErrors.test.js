@@ -84,3 +84,13 @@ test('when a parser is invalid, it should throw an error', () => {
     expect(e.message).toMatch('> 4 | invalid:');
   }
 })
+
+test('when \' is used without a line above, it should throw an error', () => {
+  try {
+    parseDiagram('diagram44')
+    expect(true).toBe(false);
+  } catch (e) {
+    expect(e.message).toMatch('May only use \' when there is a style line above');
+    expect(e.message).toMatch('> 5 |   o: ')
+  }
+})
