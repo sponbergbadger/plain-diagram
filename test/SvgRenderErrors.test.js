@@ -75,3 +75,12 @@ test('when polygon coords are not a float, it should throw an error', () => {
     expect(e.message).toMatch('Invalid coords: 0,not-a-number');
   }
 })
+
+test('when a parser is invalid, it should throw an error', () => {
+  try {
+    parseDiagram('diagram43')
+    expect(true).toBe(false);
+  } catch (e) {
+    expect(e.message).toMatch('> 4 | invalid:');
+  }
+})

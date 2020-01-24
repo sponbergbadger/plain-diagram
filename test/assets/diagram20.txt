@@ -5,7 +5,7 @@ circle:
 // Ignored
 
 svg:
-  o: display="none"
+  o: display="none" // display="visible"
 
 shape:
   s: s
