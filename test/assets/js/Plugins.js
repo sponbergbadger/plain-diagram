@@ -6,8 +6,8 @@ registerParser(C.textbox, parserTextbox)
 registerLayoutProducer(C.textbox, layoutTextbox)
 registerRenderer(C.textbox, renderTextbox)
 
-function parserTextbox(line, rem, variables, settings) {
-  const {key, tokens, contentLines, content} = parseKeyContent(line, rem, 3, variables, true)
+function parserTextbox(line, inputFile, variables, settings) {
+  const {key, tokens, contentLines, content} = parseKeyContent(line, inputFile, 3, variables, true)
 
   const params = {}
 
