@@ -113,3 +113,21 @@ test('when a layout section is missing, it should throw an error', () => {
     expect(e.message).toMatch('Invalid specification: must provide a spec followed by a layout section');
   }
 })
+
+test('when fill is used on an unsupported element, it should throw an error', () => {
+  try {
+    parseDiagram('diagram47')
+    expect(true).toBe(false);
+  } catch (e) {
+    expect(e.message).toMatch('Fill is not supported on this element');
+  }
+})
+
+test('when a size is not fill or a number, it should throw an error', () => {
+  try {
+    parseDiagram('diagram48')
+    expect(true).toBe(false);
+  } catch (e) {
+    expect(e.message).toMatch('Is not a number, or \'fill\': a');
+  }
+})

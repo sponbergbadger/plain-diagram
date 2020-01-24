@@ -17,8 +17,8 @@ function parserTextbox(line, inputFile, variables, settings) {
       && tokens[1] !== undefined
       && (!isNaN(tokens[0]) || tokens[0] === 'fill')
       && (!isNaN(tokens[1]) || tokens[1] === 'fill')) {
-    width = fillOrFloat(Util.extractParams(tokens[0], params, 'fillWidth'), true)
-    height = fillOrFloat(Util.extractParams(tokens[1], params, 'fillHeight'), true)
+    width = fillOrFloat(Util.extractParams(tokens[0], params, 'fillWidth'), inputFile, true)
+    height = fillOrFloat(Util.extractParams(tokens[1], params, 'fillHeight'), inputFile, true)
     let firstLineArr = contentLines[0].split(' ')
     let count = 0
     while (true) {
@@ -37,8 +37,8 @@ function parserTextbox(line, inputFile, variables, settings) {
   return {
     key,
     type: C.textbox,
-    width: fillOrFloat(Util.extractParams(tokens[0], params, 'fillWidth'), true),
-    height: fillOrFloat(Util.extractParams(tokens[1], params, 'fillHeight'), true),
+    width: fillOrFloat(Util.extractParams(tokens[0], params, 'fillWidth'), inputFile, true),
+    height: fillOrFloat(Util.extractParams(tokens[1], params, 'fillHeight'), inputFile, true),
     params,
     text: contentLines,
   }
