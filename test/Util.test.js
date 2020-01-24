@@ -20,8 +20,8 @@ test('it should stringify js to one line with spaces', () => {
   } catch (e) {
     const eWithMsg = Util.addMessageToError('additional message', e)
     expect(eWithMsg.stack.split('\n')[0]).toBe('Error: additional message')
-    expect(eWithMsg.stack.split('\n')[1]).toBe('...')
-    expect(eWithMsg.stack.split('\n')[2]).toBe('Error: unit testing')
+    expect(eWithMsg.stack.split('\n')[1]).toBe('')
+    expect(eWithMsg.stack.split('\n')[2]).toBe(' Error: unit testing')
     expect(eWithMsg.message).toMatch('additional message')
   }
 })

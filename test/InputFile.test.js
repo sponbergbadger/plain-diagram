@@ -22,6 +22,15 @@ shape:circles
 shape:circles3
 
   o o o
+
+shape:circles4
+
+settings:
+  horizontal-spacer: 1
+
+layout:
+
+  o o o o
 `
 
 test('it should parse the file into sections', () => {
@@ -73,4 +82,12 @@ test('when peek is called, it should return the current line and note remove it'
   expect(spec.peek()).toBe('variable:')
   expect(spec.peek()).toBe('variable:')
   expect(spec.peek()).toBe('variable:')
+})
+
+test('that an input file can be constructed with a NumberedLines', () => {
+  const input = new InputFile(file1)
+  const {spec, layout, shapes} = input.fileSections
+  const {spec: spec2, layout: layout2} = new InputFile(null, shapes[2]).fileSections
+  expect(spec2.lines[1].lineNumber).toBe(27)
+  expect(spec2.lines[1].string).toBe('  horizontal-spacer: 1')
 })
