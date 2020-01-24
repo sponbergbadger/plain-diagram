@@ -131,3 +131,12 @@ test('when a size is not fill or a number, it should throw an error', () => {
     expect(e.message).toMatch('Is not a number, or \'fill\': a');
   }
 })
+
+test('when shape uses spec and does not provide a layout, it should throw an error', () => {
+  try {
+    parseDiagram('diagram49')
+    expect(true).toBe(false);
+  } catch (e) {
+    expect(e.message).toMatch('Invalid specification: must provide a spec followed by a layout section');
+  }
+})

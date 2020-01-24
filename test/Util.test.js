@@ -14,7 +14,12 @@ test('it should stringify js to one line with spaces', () => {
   expect(str).not.toMatch('\n')
 })
 
-test('it should stringify js to one line with spaces', () => {
+test('when the input is null it should stringify js to null', () => {
+  const str = Util.stringify1(null)
+  expect(str).toBe('null')
+})
+
+test('it should format an error message', () => {
   try {
     throw new Error('unit testing')
   } catch (e) {

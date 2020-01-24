@@ -1,0 +1,14 @@
+circle:
+  o: 1
+
+shape:
+   s: shape
+
+layout:
+
+  s
+
+shape:shape
+
+settings:
+  vertical-spacer: 5
