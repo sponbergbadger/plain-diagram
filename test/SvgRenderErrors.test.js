@@ -104,3 +104,12 @@ test('when svg refers to an element that doesn\'t exist, it should throw an erro
     expect(e.message).toMatch('> 5 |   o2:')
   }
 })
+
+test('when a layout section is missing, it should throw an error', () => {
+  try {
+    parseDiagram('diagram46')
+    expect(true).toBe(false);
+  } catch (e) {
+    expect(e.message).toMatch('Invalid specification: must provide a spec followed by a layout section');
+  }
+})
