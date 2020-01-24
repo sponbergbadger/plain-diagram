@@ -94,3 +94,13 @@ test('when \' is used without a line above, it should throw an error', () => {
     expect(e.message).toMatch('> 5 |   o: ')
   }
 })
+
+test('when svg refers to an element that doesn\'t exist, it should throw an error', () => {
+  try {
+    parseDiagram('diagram45')
+    expect(true).toBe(false);
+  } catch (e) {
+    expect(e.message).toMatch('Element not found: o2');
+    expect(e.message).toMatch('> 5 |   o2:')
+  }
+})
