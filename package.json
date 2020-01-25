@@ -3,6 +3,12 @@
   "version": "2.1.0",
   "description": "Create diagrams you can git",
   "main": "lib/index.js",
+  "files": [
+    "/lib",
+    "/readme-assets",
+    "LICENSE",
+    "README.md"
+  ],
   "scripts": {
     "test": "jest"
   },
