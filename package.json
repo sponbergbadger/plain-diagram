@@ -10,6 +10,7 @@
     "README.md"
   ],
   "scripts": {
+    "version": "scripts/bump-version-in-readme.sh",
     "test": "jest"
   },
   "repository": {
