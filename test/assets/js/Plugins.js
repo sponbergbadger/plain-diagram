@@ -1,13 +1,23 @@
 const C = {
-  textbox: 'textbox'
+  textbox: 'textbox',
+  funnybox: 'funnybox',
+  nosize: 'nosize',
+  nowidth: 'nowidth',
 }
 
 registerParser(C.textbox, parserTextbox)
 registerLayoutProducer(C.textbox, layoutTextbox)
 registerRenderer(C.textbox, renderTextbox)
 
-function parserTextbox(line, rem, variables, settings) {
-  const {key, tokens, contentLines, content} = parseKeyContent(line, rem, 3, variables, true)
+registerParser(C.funnybox, parserFunnybox)
+
+registerParser(C.nosize, parserNosize)
+registerRenderer(C.nosize, renderNosize)
+
+registerParser(C.nowidth, parserNowidth)
+
+function parserTextbox(line, inputFile, variables, settings) {
+  const {key, tokens, contentLines, content} = parseKeyContent(line, inputFile, 3, variables, true)
 
   const params = {}
 
@@ -17,8 +27,8 @@ function parserTextbox(line, rem, variables, settings) {
       && tokens[1] !== undefined
       && (!isNaN(tokens[0]) || tokens[0] === 'fill')
       && (!isNaN(tokens[1]) || tokens[1] === 'fill')) {
-    width = fillOrFloat(Util.extractParams(tokens[0], params, 'fillWidth'), true)
-    height = fillOrFloat(Util.extractParams(tokens[1], params, 'fillHeight'), true)
+    width = fillOrFloat(Util.extractParams(tokens[0], params, 'fillWidth'), inputFile, true)
+    height = fillOrFloat(Util.extractParams(tokens[1], params, 'fillHeight'), inputFile, true)
     let firstLineArr = contentLines[0].split(' ')
     let count = 0
     while (true) {
@@ -37,8 +47,8 @@ function parserTextbox(line, rem, variables, settings) {
   return {
     key,
     type: C.textbox,
-    width: fillOrFloat(Util.extractParams(tokens[0], params, 'fillWidth'), true),
-    height: fillOrFloat(Util.extractParams(tokens[1], params, 'fillHeight'), true),
+    width: fillOrFloat(Util.extractParams(tokens[0], params, 'fillWidth'), inputFile, true),
+    height: fillOrFloat(Util.extractParams(tokens[1], params, 'fillHeight'), inputFile, true),
     params,
     text: contentLines,
   }
@@ -103,4 +113,41 @@ function renderText(obj, sizeAndPosition, styleBlock, svgBlock, context, styleDa
   buf += `</text>`
 
   return buf
+}
+
+function parserFunnybox(line, inputFile, variables, settings) {
+  const {key, tokens, contentLines, content} = parseKeyContent(line, inputFile, 3, variables, true)
+
+  return {
+    key,
+    type: C.funnybox,
+  }
+}
+
+function parserNosize(line, inputFile, variables, settings) {
+  const {key, tokens, contentLines, content} = parseKeyContent(line, inputFile, 3, variables, true)
+
+  return {
+    key,
+    width: 1,
+    type: C.nosize,
+  }
+}
+
+function renderNosize(obj, sizeAndPosition, styleBlock, svgBlock) {
+  let {x1, y1, width, height} = sizeAndPosition
+
+  let buf = `<rect x="30" y="30" width="30" height="30" stroke-width="2" stroke="black"${styleBlock}${svgBlock}></rect>`
+
+  return buf
+}
+
+function parserNowidth(line, inputFile, variables, settings) {
+  const {key, tokens, contentLines, content} = parseKeyContent(line, inputFile, 3, variables, true)
+
+  return {
+    key,
+    height: 1,
+    type: C.nosize,
+  }
 }

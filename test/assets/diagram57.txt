@@ -1,0 +1,8 @@
+circle:
+     o: 1
+  bigo: 100
+
+layout:
+
+  o o  o
+  bigo

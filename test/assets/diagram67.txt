@@ -1,0 +1,13 @@
+circle:
+  o: 1
+
+nowidth:
+  t: 5
+
+layout:
+
+  t    t
+
+* from t to t[2]
+
+  o

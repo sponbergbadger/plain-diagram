@@ -1,0 +1,16 @@
+rect:
+   r:  5 5
+  r2: 50 50
+
+line:
+   l: 1 fill(0 30)
+  l2: 1 fill(-10 30)
+
+polygon:
+   p: 0,not-a-number
+
+layout:
+
+  p
+
+  r r2

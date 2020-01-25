@@ -14,7 +14,7 @@ polygon:
   p: 0,0 15,5 0,10
 
 text:
-   t: Hello, World!
+   t: Hello, World! // Ignored
   t2: Hello,
       World!
   t3: 100 25 Left
