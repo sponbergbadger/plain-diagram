@@ -31,6 +31,16 @@ function parseDiagram(filename, saveToFile = false) {
   return js.svg
 }
 
+function expectError(diagram, lineNumber, message) {
+  try {
+    parseDiagram(diagram)
+    expect(true).toBe(false);
+  } catch (e) {
+    expect(e.message).toMatch(message);
+    expect(e.message).toMatch(`> ${lineNumber} |`)
+  }
+}
+
 test('when an error is thrown, there should be a > pointing at the invalid line', () => {
   try {
     parseDiagram('diagram42')
@@ -67,76 +77,137 @@ test('when an error is thrown, the message should plus and minus 3 lines', () =>
   }
 })
 
+test('it should throw an error if an element is not defined', () => {
+  expect(() => {
+    parseDiagram('diagram21')
+  }).toThrow();
+})
+
+test('it should throw an error if the layout section is not present', () => {
+  expect(() => {
+    parseDiagram('diagram22')
+  }).toThrow();
+})
+
+test('it should throw an error if the spec section is defined', () => {
+  expect(() => {
+    parseDiagram('diagram23')
+  }).toThrow();
+})
+
+test('it should throw an error when \' is used in style when there isn\'t one defined above it', () => {
+  expect(() => {
+    parseDiagram('diagram24')
+  }).toThrow();
+})
+
+test('it should throw an error when fill is used on an unsupported type', () => {
+  expect(() => {
+    parseDiagram('diagram25')
+  }).toThrow();
+  expect(() => {
+    parseDiagram('diagram26')
+  }).toThrow();
+})
+
+test('it should throw an error when the image height is zero', () => {
+  expect(() => {
+    parseDiagram('diagram28')
+  }).toThrow();
+})
+
+test('it should throw an error when the image width is zero', () => {
+  expectError('diagram29', 6, 'Layer width must be > 0')
+})
+
 test('when polygon coords are not a float, it should throw an error', () => {
-  try {
-    parseDiagram('diagram42')
-    expect(true).toBe(false);
-  } catch (e) {
-    expect(e.message).toMatch('Invalid coords: 0,not-a-number');
-  }
+  expectError('diagram42', 10, 'Invalid coords: 0,not-a-number')
 })
 
 test('when a parser is invalid, it should throw an error', () => {
-  try {
-    parseDiagram('diagram43')
-    expect(true).toBe(false);
-  } catch (e) {
-    expect(e.message).toMatch('> 4 | invalid:');
-  }
+  expectError('diagram43', 4, 'Unknown type: invalid')
 })
 
 test('when \' is used without a line above, it should throw an error', () => {
-  try {
-    parseDiagram('diagram44')
-    expect(true).toBe(false);
-  } catch (e) {
-    expect(e.message).toMatch('May only use \' when there is a style line above');
-    expect(e.message).toMatch('> 5 |   o: ')
-  }
+  expectError('diagram44', 5, 'May only use \' when there is a style line above')
 })
 
 test('when svg refers to an element that doesn\'t exist, it should throw an error', () => {
-  try {
-    parseDiagram('diagram45')
-    expect(true).toBe(false);
-  } catch (e) {
-    expect(e.message).toMatch('Element not found: o2');
-    expect(e.message).toMatch('> 5 |   o2:')
-  }
+  expectError('diagram45', 5, 'Element not found: o2')
 })
 
 test('when a layout section is missing, it should throw an error', () => {
-  try {
-    parseDiagram('diagram46')
-    expect(true).toBe(false);
-  } catch (e) {
-    expect(e.message).toMatch('Invalid specification: must provide a spec followed by a layout section');
-  }
+  expectError('diagram46', 1, 'Invalid specification: must provide a spec followed by a layout section')
 })
 
 test('when fill is used on an unsupported element, it should throw an error', () => {
-  try {
-    parseDiagram('diagram47')
-    expect(true).toBe(false);
-  } catch (e) {
-    expect(e.message).toMatch('Fill is not supported on this element');
-  }
+  expectError('diagram47', 2, 'Fill is not supported on this element')
 })
 
 test('when a size is not fill or a number, it should throw an error', () => {
-  try {
-    parseDiagram('diagram48')
-    expect(true).toBe(false);
-  } catch (e) {
-    expect(e.message).toMatch('Is not a number, or \'fill\': a');
-  }
+  expectError('diagram48', 2, 'Is not a number, or \'fill\': a')
 })
 
 test('when shape uses spec and does not provide a layout, it should throw an error', () => {
-  try {
-    parseDiagram('diagram49')
-    expect(true).toBe(false);
-  } catch (e) {
-    expect(e.message).toMatch('Invalid specification: must provide a spec followed by a layout section');
-  }
+  expectError('diagram49', 11, 'Invalid specification: must provide a spec followed by a layout section')
+})
+
+test('when two layers have the same z-index, it should throw an error', () => {
+  expectError('diagram50', 12, 'Layer at z-index 2 already exists')
+})
+
+test('when a layer does not use at or from/to, it should throw an error', () => {
+  expectError('diagram51', 8, 'Invalid layer definition')
+})
+
+test('when a layer offset height is invalid, it should throw an error', () => {
+  expectError('diagram52', 8, 'Invalid coords: 0,a')
+})
+
+test('when a layer offset width is invalid, it should throw an error', () => {
+  expectError('diagram53', 8, 'Invalid coords: a,0')
+})
+
+test('when a layer anchor reference contains an unkown z-index, it should throw an error', () => {
+  expectError('diagram55', 13, 'Unknown layer z-index: 3')
+})
+
+test('when a layer anchor reference contains an unkown element, it should throw an error', () => {
+  expectError('diagram56', 8, 'Reference not found: z')
+})
+
+test('when a column has multiple elements in the same row, it should throw an error', () => {
+  expectError('diagram57', 7, 'May not have more than one object per row in a column');
+})
+
+test('when an empty column has multiple continuations in the same row, it should throw an error', () => {
+  expectError('diagram58', 7, 'May not have more than one continuation per row in an empty column');
+})
+
+test('when a layer\'s fillWidth is invalid, it should throw an error', () => {
+  expectError('diagram60', 8, 'Invalid fillWidth: $invalid');
+})
+
+test('when a layer\'s fillWidth is invalid, it should throw an error', () => {
+  expectError('diagram61', 8, 'Invalid fillWidth: a');
+})
+
+test('when a layer\'s fillHeight is invalid, it should throw an error', () => {
+  expectError('diagram62', 8, 'Invalid fillHeight: $invalid');
+})
+
+test('when a layer\'s fillHeight is invalid, it should throw an error', () => {
+  expectError('diagram63', 8, 'Invalid fillHeight: a');
+})
+
+test('when an element returned from a parser does not have a renderer, it should throw an error', () => {
+  expectError('diagram64', 5, 'No renderer for: funnybox');
+})
+
+test('when an anchor reference does not exist, it should throw an error', () => {
+  expectError('diagram65', 11, 'Reference not found: t2');
+})
+
+test('when a parsed element does not have a height, it should throw an error', () => {
+  expectError('diagram66', 5, 'Parsed element must have a height: t', true);
 })

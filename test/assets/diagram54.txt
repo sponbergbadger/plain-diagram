@@ -1,0 +1,15 @@
+circle:
+  o: 1
+  o2: 1
+
+layout:
+
+  o
+
+*:2 at o
+
+  o o2
+
+* at l:2:o2
+
+  o

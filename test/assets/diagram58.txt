@@ -1,0 +1,7 @@
+circle:
+     o: 1
+
+layout:
+
+  o    o
+  o-- --

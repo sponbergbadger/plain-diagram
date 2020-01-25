@@ -346,7 +346,7 @@ test('it should fill dynamic heights', () => {
   expect(parseInt(line.y2)).toBe(y2)
 })
 
-test('it should place a layer AT another layer', () => {
+test('it should place a layer AT an element', () => {
   const svg = parseDiagram('diagram11')
   const ref1 = getElement(svg, 'ellipse')._attributes
   const ref2 = getElement(svg, 'ellipse', 1)._attributes
@@ -378,6 +378,14 @@ test('it should place a layer AT another layer', () => {
 
   expect(pf(o5.cx)).toBe(pf(ref5.cx))
   expect(pf(o5.cy)).toBe(pf(ref5.cy) + smallRadius + offset)
+})
+
+test('it should place a layer AT another layer by zindex', () => {
+  const svg = parseDiagram('diagram54')
+  const o = getElement(svg, 'ellipse', 0, 2)._attributes
+
+  expect(o.cx).toBe('42')
+  expect(o.cy).toBe('31')
 })
 
 test('it should place a layer on a PATH between elements', () => {
@@ -556,39 +564,6 @@ test('it should show a debug grid for shape', () => {
   expect(rect2.style).toMatch('fill: lightpink')
 })
 
-test('it should throw an error if an element is not defined', () => {
-  expect(() => {
-    parseDiagram('diagram21')
-  }).toThrow();
-})
-
-test('it should throw an error if the layout section is not present', () => {
-  expect(() => {
-    parseDiagram('diagram22')
-  }).toThrow();
-})
-
-test('it should throw an error if the spec section is defined', () => {
-  expect(() => {
-    parseDiagram('diagram23')
-  }).toThrow();
-})
-
-test('it should throw an error when \' is used in style when there isn\'t one defined above it', () => {
-  expect(() => {
-    parseDiagram('diagram24')
-  }).toThrow();
-})
-
-test('it should throw an error when fill is used on an unsupported type', () => {
-  expect(() => {
-    parseDiagram('diagram25')
-  }).toThrow();
-  expect(() => {
-    parseDiagram('diagram26')
-  }).toThrow();
-})
-
 test('it should save to a file', () => {
   parseDiagram('diagram1', true)
   const xml = fs.readFileSync(path.resolve(basePath, 'output', 'diagram1.svg'), 'utf-8')
@@ -603,18 +578,6 @@ test('it should render a layer\'s svg tag', () => {
   expect(att.cx).toBe('45')
   expect(att.cy).toBe('45')
   expect(svg.g[1]._attributes.transform).toBe('translate(25,25)')
-})
-
-test('it should throw an error when the image height is zero', () => {
-  expect(() => {
-    parseDiagram('diagram28')
-  }).toThrow();
-})
-
-test('it should throw an error when the image width is zero', () => {
-  expect(() => {
-    parseDiagram('diagram29')
-  }).toThrow();
 })
 
 test('it should fill columns evenly when they are already determined', () => {
@@ -827,4 +790,12 @@ test('it should fill a minimum vertical when the space is less than the minimum'
   expect(parseFloat(l1.y2) - parseFloat(l1.y1)).toBe(30)
   expect(parseFloat(l2.y2) - parseFloat(l2.y1)).toBe(50)
   expect(parseFloat(l3.y2) - parseFloat(l3.y1)).toBe(40)
+})
+
+test('it should fill a shape\'s height', () => {
+  const svg = parseDiagram('diagram59')
+  const s = getElement(svg, 'g')
+  const r = getElement(s, 'rect')._attributes
+  expect(r.width).toBe('100')
+  expect(r.height).toBe('200')
 })

@@ -71,9 +71,9 @@ test('when peek is called, it should not increment the line number', () => {
 test('when pop is called, it should return the current line and remove it', () => {
   const input = new InputFile(file1)
   const {spec, layout, shapes} = input.fileSections
-  expect(spec.pop()).toBe('variable:')
-  expect(spec.pop()).toBe('  blue: #00f')
-  expect(spec.pop()).toBe('')
+  expect(spec.pop().string).toBe('variable:')
+  expect(spec.pop().string).toBe('  blue: #00f')
+  expect(spec.pop().string).toBe('')
 })
 
 test('when peek is called, it should return the current line and note remove it', () => {

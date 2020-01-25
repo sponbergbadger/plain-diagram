@@ -1,0 +1,9 @@
+circle:
+  o: 1
+
+funnybox:
+  f: 3
+
+layout:
+
+  f

@@ -1,0 +1,13 @@
+circle:
+  o: 1
+
+text:
+  t: 'abc'
+
+layout:
+
+  t    t
+
+* from left of t to right of t2
+
+  o

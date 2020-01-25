@@ -1,10 +1,20 @@
 const C = {
-  textbox: 'textbox'
+  textbox: 'textbox',
+  funnybox: 'funnybox',
+  nosize: 'nosize',
+  nowidth: 'nowidth',
 }
 
 registerParser(C.textbox, parserTextbox)
 registerLayoutProducer(C.textbox, layoutTextbox)
 registerRenderer(C.textbox, renderTextbox)
+
+registerParser(C.funnybox, parserFunnybox)
+
+registerParser(C.nosize, parserNosize)
+registerRenderer(C.nosize, renderNosize)
+
+registerParser(C.nowidth, parserNowidth)
 
 function parserTextbox(line, inputFile, variables, settings) {
   const {key, tokens, contentLines, content} = parseKeyContent(line, inputFile, 3, variables, true)
@@ -103,4 +113,41 @@ function renderText(obj, sizeAndPosition, styleBlock, svgBlock, context, styleDa
   buf += `</text>`
 
   return buf
+}
+
+function parserFunnybox(line, inputFile, variables, settings) {
+  const {key, tokens, contentLines, content} = parseKeyContent(line, inputFile, 3, variables, true)
+
+  return {
+    key,
+    type: C.funnybox,
+  }
+}
+
+function parserNosize(line, inputFile, variables, settings) {
+  const {key, tokens, contentLines, content} = parseKeyContent(line, inputFile, 3, variables, true)
+
+  return {
+    key,
+    width: 1,
+    type: C.nosize,
+  }
+}
+
+function renderNosize(obj, sizeAndPosition, styleBlock, svgBlock) {
+  let {x1, y1, width, height} = sizeAndPosition
+
+  let buf = `<rect x="30" y="30" width="30" height="30" stroke-width="2" stroke="black"${styleBlock}${svgBlock}></rect>`
+
+  return buf
+}
+
+function parserNowidth(line, inputFile, variables, settings) {
+  const {key, tokens, contentLines, content} = parseKeyContent(line, inputFile, 3, variables, true)
+
+  return {
+    key,
+    height: 1,
+    type: C.nosize,
+  }
 }

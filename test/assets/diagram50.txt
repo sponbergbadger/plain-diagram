@@ -1,0 +1,14 @@
+circle:
+  o: 1
+
+layout:
+
+  o
+
+*:2 at o
+
+  o
+
+*:2 at o
+
+  o  

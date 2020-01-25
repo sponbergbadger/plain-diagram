@@ -1,0 +1,10 @@
+circle:
+  o: 1
+
+layout:
+
+  o
+
+*:2 at o plus a,0
+
+  o
