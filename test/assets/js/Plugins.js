@@ -156,5 +156,5 @@ function parserNowidth(line, inputFile, variables, settings) {
 }
 
 function specParsed(spec) {
-  spec.defaultStyles['.test-spec-parsed'] = `text-anchor: start;`
+  spec.globalStyles['.test-spec-parsed'] = `text-anchor: start;`
 }
