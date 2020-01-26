@@ -270,13 +270,13 @@ test('it should apply fonts', () => {
   expect(svg.defs.style._text).toMatch(font2)
   expect(svg.defs.style._text).toMatch(font3)
 
-  expect(svg.style._text).toMatch('text { dominant-baseline: middle; text-anchor: middle; font-family: Lobster')
+  expect(svg.style._text).toMatch('text { font-family: Lobster')
   expect(svg.style._text).toMatch('.message2 { font-family: Roboto }')
   expect(svg.style._text).toMatch('.message3 { font-family: Indie Flower }')
 
-  expect(text1).not.toHaveProperty('class')
-  expect(text2.class).toBe('message2')
-  expect(text3.class).toBe('message3')
+  expect(text1.class).not.toMatch('text1')
+  expect(text2.class).toMatch('message2')
+  expect(text3.class).toMatch('message3')
 })
 
 test('it should apply custom margins', () => {
@@ -591,33 +591,37 @@ test('it should fill columns evenly when they are already determined', () => {
 test('it should align multiline text top-left', () => {
   const svg = parseDiagram('diagram31')
   const t = getElement(svg, 'text', 8)._attributes
-  expect(svg.style._text).toMatch(/\.a { text-anchor: start; dominant-baseline: hanging; }/)
   expect(t.x).toBe('270')
   expect(t.y).toBe('230')
+  expect(t.class).toMatch('-git-diagram-at')
+  expect(t.class).toMatch('-git-diagram-al')
 })
 
 test('it should align multiline text top', () => {
   const svg = parseDiagram('diagram31')
   const t = getElement(svg, 'text', 7)._attributes
-  expect(svg.style._text).toMatch(/\.b { dominant-baseline: hanging; }/)
   expect(t.x).toBe('200')
   expect(t.y).toBe('230')
+  expect(t.class).toMatch('-git-diagram-at')
+  expect(t.class).toMatch('-git-diagram-ac')
 })
 
 test('it should align multiline text top-right', () => {
   const svg = parseDiagram('diagram31')
   const t = getElement(svg, 'text', 6)._attributes
-  expect(svg.style._text).toMatch(/\.c { text-anchor: end; dominant-baseline: hanging; }/)
   expect(t.x).toBe('130')
   expect(t.y).toBe('230')
+  expect(t.class).toMatch('-git-diagram-at')
+  expect(t.class).toMatch('-git-diagram-ar')
 })
 
 test('it should align multiline text left', () => {
   const svg = parseDiagram('diagram31')
   const t = getElement(svg, 'text', 5)._attributes
-  expect(svg.style._text).toMatch(/\.d { text-anchor: start; }/)
   expect(t.x).toBe('270')
   expect(t.y).toBe('180')
+  expect(t.class).toMatch('-git-diagram-am')
+  expect(t.class).toMatch('-git-diagram-al')
 })
 
 test('it should align multiline text middle', () => {
@@ -625,38 +629,44 @@ test('it should align multiline text middle', () => {
   const t = getElement(svg, 'text', 4)._attributes
   expect(t.x).toBe('200')
   expect(t.y).toBe('180')
+  expect(t.class).toMatch('-git-diagram-am')
+  expect(t.class).toMatch('-git-diagram-ac')
 })
 
 test('it should align multiline text right', () => {
   const svg = parseDiagram('diagram31')
   const t = getElement(svg, 'text', 3)._attributes
-  expect(svg.style._text).toMatch(/\.f { text-anchor: end; }/)
   expect(t.x).toBe('130')
   expect(t.y).toBe('180')
+  expect(t.class).toMatch('-git-diagram-am')
+  expect(t.class).toMatch('-git-diagram-ar')
 })
 
 test('it should align multiline text bottom-left', () => {
   const svg = parseDiagram('diagram31')
   const t = getElement(svg, 'text', 2)._attributes
-  expect(svg.style._text).toMatch(/\.g { text-anchor: start; dominant-baseline: alphabetic; }/)
   expect(t.x).toBe('270')
   expect(t.y).toBe('130')
+  expect(t.class).toMatch('-git-diagram-ab')
+  expect(t.class).toMatch('-git-diagram-al')
 })
 
 test('it should align multiline text bottom', () => {
   const svg = parseDiagram('diagram31')
   const t = getElement(svg, 'text', 1)._attributes
-  expect(svg.style._text).toMatch(/\.h { dominant-baseline: alphabetic; }/)
   expect(t.x).toBe('200')
   expect(t.y).toBe('130')
+  expect(t.class).toMatch('-git-diagram-ab')
+  expect(t.class).toMatch('-git-diagram-ac')
 })
 
 test('it should align multiline text bottom-right', () => {
   const svg = parseDiagram('diagram31')
   const t = getElement(svg, 'text', 0)._attributes
-  expect(svg.style._text).toMatch(/\.i { text-anchor: end; dominant-baseline: alphabetic; }/)
   expect(t.x).toBe('130')
   expect(t.y).toBe('130')
+  expect(t.class).toMatch('-git-diagram-ab')
+  expect(t.class).toMatch('-git-diagram-ar')
 })
 
 test('it should fill both width and height for a layer', () => {
@@ -687,7 +697,8 @@ test('that text aligns with the grid', () => {
   expect(t3.y).toBe('180')
   expect(t4.x).toBe('330')
   expect(t4.y).toBe('430')
-  expect(svg.style._text).toMatch(/\.t4 { text-anchor: start; dominant-baseline: alphabetic; }/)
+  expect(t1.class).toMatch('-git-diagram-al')
+  expect(t1.class).toMatch('-git-diagram-ab')
 })
 
 test('it should translate diagrams that have elements in the negative coordinate space', () => {
