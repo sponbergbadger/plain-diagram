@@ -810,3 +810,11 @@ test('it should fill a shape\'s height', () => {
   expect(r.width).toBe('100')
   expect(r.height).toBe('200')
 })
+
+test('when a shape\'s grid aligment is different from the diagram\'s alignment, it should apply the shape\'s alignment', () => {
+  const svg = parseDiagram('diagram68', true)
+  const s = getElement(svg, 'g')
+  const t = getElement(s, 'text')._attributes
+  expect(t.x).toBe('100')
+  expect(t.y).toBe('100')
+})
