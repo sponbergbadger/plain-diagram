@@ -1102,11 +1102,11 @@ function registerLayoutProducer(type, layoutProducerFunction) {}
 
 function registerRenderer(type, rendererFunction) {}
 
-function parseKeyContent(line, rem, numTokens, variables, extractParams = false) {}
+function parseKeyContent(line, inputFile, numTokens, variables, extractParams = false) {}
 
-function fillOrFloat(word, fillSupported = false) {}
+function fillOrFloat(word, inputFile, fillSupported = false) {}
 
-function round(float) {}
+function round(float, digits = 3) {}
 ```
 
 where the variables:
@@ -1136,7 +1136,7 @@ where the function:
       - when the word is not 'fill', parses the word to a float
           - if the resulting value is not a number, throws an error
   - ```round``` is a helper function that:
-      - rounds the float to three decimal places
+      - rounds the float to three decimal places by default
       - preferably used when rendering the svg file, as three digits is accurate enough, and reduces the svg file size
 
 ##### Parser Function Contract
@@ -1147,9 +1147,12 @@ The parser function is passed the following parameters, in order:
 
   - ```line```
       - String: The first line of text that describes the element
-  - ```remaining```
-      - Array: The remaining lines of text in the git-diagram file section
-      - Be responsible when parsing this. If you remove all the lines from this array, then you must handle them.
+  - ```inputFile```
+      - Object: with the following functions:
+          - peek(): returns the next line
+          - pop(): returns the next line and removes it from the stack
+          - userError(message): throws an error with the message and formatting indicating the line the error occurred, and a few lines above and below where the error occurred. The occurrence line is determined to be the last line that was popped.
+      - Be responsible when calling pop(). Every line removed must be handled.
   - ```variables```
       - Map: A map of variable name to value. This is the list of variables declared in the git-diagram special section.
   - ```settings```
@@ -1177,10 +1180,10 @@ const C = require('./Const')
 
 registerParser(C.circle, parserCircle)
 
-function parserCircle(line, rem, variables) {
-  const {key, tokens} = parseKeyContent(line, rem, 1, variables)
+function parserCircle(line, inputFile, variables) {
+  const {key, tokens} = parseKeyContent(line, inputFile, 1, variables)
 
-  const radius = fillOrFloat(tokens[0])
+  const radius = fillOrFloat(tokens[0], inputFile)
 
   return {
     key: key,
@@ -1265,6 +1268,12 @@ The renderer function is passed the following parameters, in order:
       - String: rendered svg block for the css styling applied to this element, prefixed with a space. If no styling has been applied, its an empty string.
   - ```svgBlock```
       - String: rendered svg block for the raw svg from the special section, prefixed with a space. If no svg has been applied, its an empty string.
+  - ```context```
+      - Object: contains the property ```basePath``` which was passed into the diagram factory upon construction.
+  - ```styleData```
+      - String: style data applied to this element from the Style special section of the input file.
+  - ```outputPath```
+      - String: the output path of this diagram.
 
 ###### Output
 

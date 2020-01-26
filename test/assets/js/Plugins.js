@@ -77,7 +77,7 @@ function layoutTextbox(obj, position) {
 function renderTextbox(obj, sizeAndPosition, styleBlock, svgBlock) {
   let {x1, y1, width, height} = sizeAndPosition
 
-  let buf = `<rect x="${round(x1)}" y="${round(y1)}" width="${round(width)}" height="${round(height)}" stroke-width="1" stroke="black"${styleBlock}${svgBlock}></rect>`
+  let buf = `<rect x="${round(x1, 4)}" y="${round(y1)}" width="${round(width)}" height="${round(height)}" stroke-width="1" stroke="black"${styleBlock}${svgBlock}></rect>`
   buf += renderText(obj, sizeAndPosition, styleBlock, svgBlock)
 
   return buf
