@@ -3,6 +3,7 @@ const C = {
   funnybox: 'funnybox',
   nosize: 'nosize',
   nowidth: 'nowidth',
+  notificationSpecParsed: 'notificationSpecParsed',
 }
 
 registerParser(C.textbox, parserTextbox)
@@ -15,6 +16,8 @@ registerParser(C.nosize, parserNosize)
 registerRenderer(C.nosize, renderNosize)
 
 registerParser(C.nowidth, parserNowidth)
+
+addListener(C.notificationSpecParsed, specParsed)
 
 function parserTextbox(line, inputFile, variables, settings) {
   const {key, tokens, contentLines, content} = parseKeyContent(line, inputFile, 3, variables, true)
@@ -150,4 +153,8 @@ function parserNowidth(line, inputFile, variables, settings) {
     height: 1,
     type: C.nosize,
   }
+}
+
+function specParsed(spec) {
+  spec.defaultStyles['.test-spec-parsed'] = `text-anchor: start;`
 }

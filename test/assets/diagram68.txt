@@ -1,0 +1,26 @@
+rect:
+  r: 100 50
+
+text:
+  t: message
+
+shape:
+  s: text
+
+settings:
+  grid-align: left
+
+layout:
+
+  s
+
+shape:text
+
+settings:
+   grid-align: right
+  grid-valign: bottom
+
+layout:
+
+  r
+  t r
