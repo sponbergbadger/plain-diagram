@@ -818,3 +818,8 @@ test('when a shape\'s grid aligment is different from the diagram\'s alignment, 
   expect(t.x).toBe('100')
   expect(t.y).toBe('100')
 })
+
+test('it should notify a spec parsed listener', () => {
+  const svg = parseDiagram('diagram59')
+  expect(svg.style._text).toMatch(/\.test-spec-parsed { text-anchor: start; }/)
+})
