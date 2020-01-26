@@ -1031,7 +1031,7 @@ Svg uses the css style ```text-anchor``` to control horizontal alignment with a 
 
 Svg uses the css style ```dominant-baseline``` to control the vertical alignment with a value of hanging, middle, or alphabetic, for top, middle, and bottom aligned respectively.
 
-When the author uses [Grid Alignment](#grid-alignment), git-diagram will do both of those things. Css will be prefixed to the element's style class definition. Therefore, it is not necessary for the author to use the above properties in the style section. (If the author does also declare those css properties, they will override the settings that git-diagram has determined).
+When the author uses [Grid Alignment](#grid-alignment), git-diagram will do both of those things. A css class be added to the element's class definition. Therefore, it is not necessary for the author to use the above properties in the style section. (If the author does also declare those css properties, they will override the settings that git-diagram has determined).
 
 ## Plugins
 
