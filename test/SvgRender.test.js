@@ -839,3 +839,16 @@ test('it should give empty rows an equal amount of space', () => {
   expect(r2.y).toBe('63.333')
   expect(r3.y).toBe('196.667')
 })
+
+test('it should take a shape\'s size and pass into shape layout', () => {
+  const svg = parseDiagram('diagram72')
+  const s1 = getElement(svg, 'g')
+  const s2 = getElement(svg, 'g', 1)
+  const s3 = getElement(svg, 'g', 2)
+  const r1 = getElement(s1, 'rect')._attributes
+  const r2 = getElement(s2, 'rect')._attributes
+  const r3 = getElement(s3, 'rect')._attributes
+  expect(r1.width).toBe('300')
+  expect(r2.width).toBe('100')
+  expect(r3.width).toBe('10')
+})

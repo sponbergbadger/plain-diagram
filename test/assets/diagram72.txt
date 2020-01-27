@@ -1,0 +1,17 @@
+rect:
+  rect:  fill 50
+
+shape:
+  r1: box(rect) 300 50
+  r2: box(rect) 100 50
+  r3: box(rect)  10 50
+
+layout:
+
+  r1---------
+
+     r2  r3
+
+shape:box (rect text)
+
+  $rect
