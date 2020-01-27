@@ -823,3 +823,19 @@ test('it should notify a spec parsed listener', () => {
   const svg = parseDiagram('diagram59')
   expect(svg.style._text).toMatch(/\.test-spec-parsed { text-anchor: start; }/)
 })
+
+test('it should give empty columns an equal amount of space', () => {
+  const svg = parseDiagram('diagram69', true)
+  const r2 = getElement(svg, 'rect', 1)._attributes
+  const r3 = getElement(svg, 'rect', 2)._attributes
+  expect(r2.x).toBe('63.333')
+  expect(r3.x).toBe('196.667')
+})
+
+test('it should give empty rows an equal amount of space', () => {
+  const svg = parseDiagram('diagram70', true)
+  const r2 = getElement(svg, 'rect', 1)._attributes
+  const r3 = getElement(svg, 'rect', 2)._attributes
+  expect(r2.y).toBe('63.333')
+  expect(r3.y).toBe('196.667')
+})
