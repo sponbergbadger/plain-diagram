@@ -547,7 +547,7 @@ test('it should show a debug grid', () => {
   const rect1 = getElement(svg, 'rect')._attributes
   const rect2 = getElement(svg, 'rect', 1)._attributes
   const rect3 = getElement(svg, 'rect', 2)._attributes
-  const rect9 = getElement(svg, 'rect', 8)._attributes
+  const rect9 = getElement(svg, 'rect', 7)._attributes
 
   expect(rect1.style).toMatch('fill: white')
   expect(rect2.style).toMatch('fill: lightblue')
@@ -812,7 +812,7 @@ test('it should fill a shape\'s height', () => {
 })
 
 test('when a shape\'s grid aligment is different from the diagram\'s alignment, it should apply the shape\'s alignment', () => {
-  const svg = parseDiagram('diagram68', true)
+  const svg = parseDiagram('diagram68')
   const s = getElement(svg, 'g')
   const t = getElement(s, 'text')._attributes
   expect(t.x).toBe('100')
@@ -822,4 +822,20 @@ test('when a shape\'s grid aligment is different from the diagram\'s alignment, 
 test('it should notify a spec parsed listener', () => {
   const svg = parseDiagram('diagram59')
   expect(svg.style._text).toMatch(/\.test-spec-parsed { text-anchor: start; }/)
+})
+
+test('it should give empty columns an equal amount of space', () => {
+  const svg = parseDiagram('diagram69')
+  const r2 = getElement(svg, 'rect', 1)._attributes
+  const r3 = getElement(svg, 'rect', 2)._attributes
+  expect(r2.x).toBe('63.333')
+  expect(r3.x).toBe('196.667')
+})
+
+test('it should give empty rows an equal amount of space', () => {
+  const svg = parseDiagram('diagram70')
+  const r2 = getElement(svg, 'rect', 1)._attributes
+  const r3 = getElement(svg, 'rect', 2)._attributes
+  expect(r2.y).toBe('63.333')
+  expect(r3.y).toBe('196.667')
 })

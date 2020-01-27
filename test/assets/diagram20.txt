@@ -1,6 +1,7 @@
 circle:
    o: 15 // hidden
   o2: 15
+  o3:  7
 
 // Ignored
 
@@ -22,4 +23,5 @@ layout:
 
 shape:s
 
-  o2
+  o3.
+     o3
