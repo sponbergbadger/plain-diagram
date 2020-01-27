@@ -1,6 +1,6 @@
 {
   "name": "git-diagram",
-  "version": "2.2.1",
+  "version": "2.2.2",
   "description": "Create diagrams you can git",
   "main": "lib/index.js",
   "files": [
