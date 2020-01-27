@@ -209,5 +209,9 @@ test('when an anchor reference does not exist, it should throw an error', () => 
 })
 
 test('when a parsed element does not have a height, it should throw an error', () => {
-  expectError('diagram66', 5, 'Parsed element must have a height: t', true);
+  expectError('diagram66', 5, 'Parsed element must have a height: t');
+})
+
+test('when the layout section has no content, it should throw an error', () => {
+  expectError('diagram71', 6, 'Layout section must have content');
 })

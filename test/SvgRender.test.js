@@ -812,7 +812,7 @@ test('it should fill a shape\'s height', () => {
 })
 
 test('when a shape\'s grid aligment is different from the diagram\'s alignment, it should apply the shape\'s alignment', () => {
-  const svg = parseDiagram('diagram68', true)
+  const svg = parseDiagram('diagram68')
   const s = getElement(svg, 'g')
   const t = getElement(s, 'text')._attributes
   expect(t.x).toBe('100')
@@ -825,7 +825,7 @@ test('it should notify a spec parsed listener', () => {
 })
 
 test('it should give empty columns an equal amount of space', () => {
-  const svg = parseDiagram('diagram69', true)
+  const svg = parseDiagram('diagram69')
   const r2 = getElement(svg, 'rect', 1)._attributes
   const r3 = getElement(svg, 'rect', 2)._attributes
   expect(r2.x).toBe('63.333')
@@ -833,7 +833,7 @@ test('it should give empty columns an equal amount of space', () => {
 })
 
 test('it should give empty rows an equal amount of space', () => {
-  const svg = parseDiagram('diagram70', true)
+  const svg = parseDiagram('diagram70')
   const r2 = getElement(svg, 'rect', 1)._attributes
   const r3 = getElement(svg, 'rect', 2)._attributes
   expect(r2.y).toBe('63.333')
