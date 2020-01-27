@@ -181,7 +181,7 @@ test('when a column has multiple elements in the same row, it should throw an er
 })
 
 test('when an empty column has multiple continuations in the same row, it should throw an error', () => {
-  expectError('diagram58', 7, 'May not have more than one continuation per row in an empty column');
+  expectError('diagram58', 7, 'Continuation must follow an element');
 })
 
 test('when a layer\'s fillWidth is invalid, it should throw an error', () => {

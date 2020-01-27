@@ -547,7 +547,7 @@ test('it should show a debug grid', () => {
   const rect1 = getElement(svg, 'rect')._attributes
   const rect2 = getElement(svg, 'rect', 1)._attributes
   const rect3 = getElement(svg, 'rect', 2)._attributes
-  const rect9 = getElement(svg, 'rect', 8)._attributes
+  const rect9 = getElement(svg, 'rect', 7)._attributes
 
   expect(rect1.style).toMatch('fill: white')
   expect(rect2.style).toMatch('fill: lightblue')
