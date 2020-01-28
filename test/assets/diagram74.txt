@@ -1,0 +1,53 @@
+rect:
+    r1: 300 50
+     a:  20 20
+     b:  10 10
+
+line:
+  line: 5 fill
+
+style:
+  b: stroke: red
+
+layout:
+
+  a  a  a  a  a  a
+
+
+  a  a  a  a  a  a
+
+* at bottom of a with my top fillHeight:40
+
+  line
+  |
+  |   .b
+
+* at bottom of a[2] with my top fillHeight:40
+
+  line
+  |
+  b
+
+* at bottom of a[3] with my top fillHeight:40
+
+  line
+  b
+
+* at bottom of a[4] with my top fillHeight:40
+
+  line
+
+  b
+
+* at bottom of a[5] with my top fillHeight:40
+
+  line
+
+
+  b
+
+* at bottom of a[6] with my top fillHeight:40
+
+    line
+    |
+  b.|
