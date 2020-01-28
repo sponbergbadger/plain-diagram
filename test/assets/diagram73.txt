@@ -1,0 +1,50 @@
+rect:
+    r1: 300 50
+     a:  20 20
+     b:  10 10
+
+line:
+  line: fill 5
+
+style:
+  b: stroke: red
+
+layout:
+
+  a  a
+
+  a  a
+
+  a  a
+
+  a  a
+
+  a  a
+
+  a  a
+
+* from right of a to left of a[2]
+
+  line--
+       b
+
+* from right of a[3] to left of a[4]
+
+  line-b
+
+* from right of a[5] to left of a[6]
+
+  line.b
+
+* from right of a[7] to left of a[8]
+
+  line b
+
+* from right of a[9] to left of a[10]
+
+  line  b
+
+* from right of a[11] to left of a[12]
+
+       b
+  line--

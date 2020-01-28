@@ -458,8 +458,8 @@ test('it should fill a layer`s width using a fixed width', () => {
   const svg = parseDiagram('diagram15')
   const line = getElement(svg, 'line', 0, 4)._attributes
 
-  expect(line.x1).toBe('212.5')
-  expect(line.x2).toBe('232.5')
+  expect(line.x1).toBe('217.5')
+  expect(line.x2).toBe('227.5')
 })
 
 test('it should fill a layer`s width using only space available in the layer`s grid', () => {
@@ -851,4 +851,60 @@ test('it should take a shape\'s size and pass into shape layout', () => {
   expect(r1.width).toBe('300')
   expect(r2.width).toBe('100')
   expect(r3.width).toBe('10')
+})
+
+test('it should fill dynamic widths with spacers', () => {
+  const svg = parseDiagram('diagram73')
+  const line1 = getElement(svg, 'line', 0, 1)._attributes
+  const line2 = getElement(svg, 'line', 0, 2)._attributes
+  const line3 = getElement(svg, 'line', 0, 3)._attributes
+  const line4 = getElement(svg, 'line', 0, 4)._attributes
+  const line5 = getElement(svg, 'line', 0, 5)._attributes
+  const line6 = getElement(svg, 'line', 0, 6)._attributes
+  expect(parseFloat(line1.x2) - parseFloat(line1.x1)).toBe(40)
+  expect(parseFloat(line2.x2) - parseFloat(line2.x1)).toBe(30)
+  expect(parseFloat(line3.x2) - parseFloat(line3.x1)).toBe(30)
+  expect(parseFloat(line4.x2) - parseFloat(line4.x1)).toBe(10)
+  expect(parseFloat(line5.x2) - parseFloat(line5.x1)).toBe(0)
+  expect(parseFloat(line6.x2) - parseFloat(line6.x1)).toBe(40)
+  const rect1 = getElement(svg, 'rect', 0, 1)._attributes
+  const rect2 = getElement(svg, 'rect', 0, 2)._attributes
+  const rect3 = getElement(svg, 'rect', 0, 3)._attributes
+  const rect4 = getElement(svg, 'rect', 0, 4)._attributes
+  const rect5 = getElement(svg, 'rect', 0, 5)._attributes
+  const rect6 = getElement(svg, 'rect', 0, 6)._attributes
+  expect(rect1.x).toBe('80')
+  expect(rect2.x).toBe('80')
+  expect(rect3.x).toBe('80')
+  expect(rect4.x).toBe('80')
+  expect(rect5.x).toBe('80')
+  expect(rect6.x).toBe('80')
+})
+
+test('it should fill dynamic heights with spacers', () => {
+  const svg = parseDiagram('diagram74')
+  const line1 = getElement(svg, 'line', 0, 1)._attributes
+  const line2 = getElement(svg, 'line', 0, 2)._attributes
+  const line3 = getElement(svg, 'line', 0, 3)._attributes
+  const line4 = getElement(svg, 'line', 0, 4)._attributes
+  const line5 = getElement(svg, 'line', 0, 5)._attributes
+  const line6 = getElement(svg, 'line', 0, 6)._attributes
+  expect(parseFloat(line1.y2) - parseFloat(line1.y1)).toBe(40)
+  expect(parseFloat(line2.y2) - parseFloat(line2.y1)).toBe(30)
+  expect(parseFloat(line3.y2) - parseFloat(line3.y1)).toBe(30)
+  expect(parseFloat(line4.y2) - parseFloat(line4.y1)).toBe(10)
+  expect(parseFloat(line5.y2) - parseFloat(line5.y1)).toBe(0)
+  expect(parseFloat(line6.y2) - parseFloat(line6.y1)).toBe(40)
+  const rect1 = getElement(svg, 'rect', 0, 1)._attributes
+  const rect2 = getElement(svg, 'rect', 0, 2)._attributes
+  const rect3 = getElement(svg, 'rect', 0, 3)._attributes
+  const rect4 = getElement(svg, 'rect', 0, 4)._attributes
+  const rect5 = getElement(svg, 'rect', 0, 5)._attributes
+  const rect6 = getElement(svg, 'rect', 0, 6)._attributes
+  expect(rect1.y).toBe('80')
+  expect(rect2.y).toBe('80')
+  expect(rect3.y).toBe('80')
+  expect(rect4.y).toBe('80')
+  expect(rect5.y).toBe('80')
+  expect(rect6.y).toBe('80')
 })
