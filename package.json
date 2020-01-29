@@ -1,5 +1,5 @@
 {
-  "name": "git-diagram",
+  "name": "plain-diagram",
   "version": "2.2.4",
   "description": "Create diagrams you can git",
   "main": "lib/index.js",
@@ -15,7 +15,7 @@
   },
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/sponbergbadger/git-diagram.git"
+    "url": "git+https://github.com/sponbergbadger/plain-diagram.git"
   },
   "keywords": [
     "diagram",
@@ -41,9 +41,9 @@
   "author": "Hans Sponberg",
   "license": "MIT",
   "bugs": {
-    "url": "https://github.com/sponbergbadger/git-diagram/issues"
+    "url": "https://github.com/sponbergbadger/plain-diagram/issues"
   },
-  "homepage": "https://github.com/sponbergbadger/git-diagram#readme",
+  "homepage": "https://github.com/sponbergbadger/plain-diagram#readme",
   "devDependencies": {
     "coveralls": "^3.0.9",
     "jest": "^24.9.0",

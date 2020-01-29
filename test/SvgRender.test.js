@@ -593,8 +593,8 @@ test('it should align multiline text top-left', () => {
   const t = getElement(svg, 'text', 8)._attributes
   expect(t.x).toBe('270')
   expect(t.y).toBe('230')
-  expect(t.class).toMatch('-git-diagram-at')
-  expect(t.class).toMatch('-git-diagram-al')
+  expect(t.class).toMatch('-pln-diagram-at')
+  expect(t.class).toMatch('-pln-diagram-al')
 })
 
 test('it should align multiline text top', () => {
@@ -602,8 +602,8 @@ test('it should align multiline text top', () => {
   const t = getElement(svg, 'text', 7)._attributes
   expect(t.x).toBe('200')
   expect(t.y).toBe('230')
-  expect(t.class).toMatch('-git-diagram-at')
-  expect(t.class).toMatch('-git-diagram-ac')
+  expect(t.class).toMatch('-pln-diagram-at')
+  expect(t.class).toMatch('-pln-diagram-ac')
 })
 
 test('it should align multiline text top-right', () => {
@@ -611,8 +611,8 @@ test('it should align multiline text top-right', () => {
   const t = getElement(svg, 'text', 6)._attributes
   expect(t.x).toBe('130')
   expect(t.y).toBe('230')
-  expect(t.class).toMatch('-git-diagram-at')
-  expect(t.class).toMatch('-git-diagram-ar')
+  expect(t.class).toMatch('-pln-diagram-at')
+  expect(t.class).toMatch('-pln-diagram-ar')
 })
 
 test('it should align multiline text left', () => {
@@ -620,8 +620,8 @@ test('it should align multiline text left', () => {
   const t = getElement(svg, 'text', 5)._attributes
   expect(t.x).toBe('270')
   expect(t.y).toBe('180')
-  expect(t.class).toMatch('-git-diagram-am')
-  expect(t.class).toMatch('-git-diagram-al')
+  expect(t.class).toMatch('-pln-diagram-am')
+  expect(t.class).toMatch('-pln-diagram-al')
 })
 
 test('it should align multiline text middle', () => {
@@ -629,8 +629,8 @@ test('it should align multiline text middle', () => {
   const t = getElement(svg, 'text', 4)._attributes
   expect(t.x).toBe('200')
   expect(t.y).toBe('180')
-  expect(t.class).toMatch('-git-diagram-am')
-  expect(t.class).toMatch('-git-diagram-ac')
+  expect(t.class).toMatch('-pln-diagram-am')
+  expect(t.class).toMatch('-pln-diagram-ac')
 })
 
 test('it should align multiline text right', () => {
@@ -638,8 +638,8 @@ test('it should align multiline text right', () => {
   const t = getElement(svg, 'text', 3)._attributes
   expect(t.x).toBe('130')
   expect(t.y).toBe('180')
-  expect(t.class).toMatch('-git-diagram-am')
-  expect(t.class).toMatch('-git-diagram-ar')
+  expect(t.class).toMatch('-pln-diagram-am')
+  expect(t.class).toMatch('-pln-diagram-ar')
 })
 
 test('it should align multiline text bottom-left', () => {
@@ -647,8 +647,8 @@ test('it should align multiline text bottom-left', () => {
   const t = getElement(svg, 'text', 2)._attributes
   expect(t.x).toBe('270')
   expect(t.y).toBe('130')
-  expect(t.class).toMatch('-git-diagram-ab')
-  expect(t.class).toMatch('-git-diagram-al')
+  expect(t.class).toMatch('-pln-diagram-ab')
+  expect(t.class).toMatch('-pln-diagram-al')
 })
 
 test('it should align multiline text bottom', () => {
@@ -656,8 +656,8 @@ test('it should align multiline text bottom', () => {
   const t = getElement(svg, 'text', 1)._attributes
   expect(t.x).toBe('200')
   expect(t.y).toBe('130')
-  expect(t.class).toMatch('-git-diagram-ab')
-  expect(t.class).toMatch('-git-diagram-ac')
+  expect(t.class).toMatch('-pln-diagram-ab')
+  expect(t.class).toMatch('-pln-diagram-ac')
 })
 
 test('it should align multiline text bottom-right', () => {
@@ -665,8 +665,8 @@ test('it should align multiline text bottom-right', () => {
   const t = getElement(svg, 'text', 0)._attributes
   expect(t.x).toBe('130')
   expect(t.y).toBe('130')
-  expect(t.class).toMatch('-git-diagram-ab')
-  expect(t.class).toMatch('-git-diagram-ar')
+  expect(t.class).toMatch('-pln-diagram-ab')
+  expect(t.class).toMatch('-pln-diagram-ar')
 })
 
 test('it should fill both width and height for a layer', () => {
@@ -697,8 +697,8 @@ test('that text aligns with the grid', () => {
   expect(t3.y).toBe('180')
   expect(t4.x).toBe('330')
   expect(t4.y).toBe('430')
-  expect(t1.class).toMatch('-git-diagram-al')
-  expect(t1.class).toMatch('-git-diagram-ab')
+  expect(t1.class).toMatch('-pln-diagram-al')
+  expect(t1.class).toMatch('-pln-diagram-ab')
 })
 
 test('it should translate diagrams that have elements in the negative coordinate space', () => {
