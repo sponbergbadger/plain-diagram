@@ -1,15 +1,15 @@
-# Git Diagram
+# Plain Diagram
 
 Create diagrams you can git
 
-[![Build Status](https://travis-ci.com/sponbergbadger/git-diagram.svg?branch=master)](https://travis-ci.com/sponbergbadger/git-diagram)
-[![Coverage Status](https://coveralls.io/repos/github/sponbergbadger/git-diagram/badge.svg?branch=master)](https://coveralls.io/github/sponbergbadger/git-diagram?branch=master)
+[![Build Status](https://travis-ci.com/sponbergbadger/plain-diagram.svg?branch=master)](https://travis-ci.com/sponbergbadger/plain-diagram)
+[![Coverage Status](https://coveralls.io/repos/github/sponbergbadger/plain-diagram/badge.svg?branch=master)](https://coveralls.io/github/sponbergbadger/plain-diagram?branch=master)
 
 ## Installing
 
 With [npm](https://nodejs.org/en/)
 ```
-npm install git-diagram --save
+npm install plain-diagram --save
 ```
 
 ## Purpose
@@ -26,7 +26,7 @@ The advantages of having diagrams in plain text are:
     - Only actual deltas are stored between text files
 - Size
     - Diagrams can be described in less than 1K
-    - The size of a git-diagram comes out to < 1% of the equivalent size for a png diagram as big as a laptop screen, and about a third the size of an svg
+    - The size of a plain-diagram comes out to < 1% of the equivalent size for a png diagram as big as a laptop screen, and about a third the size of an svg
     - Diagrams kept in a code repository do not increase download times, whereas a repo full of PNGs will have a noticeable effect on the time it takes to clone
 - Scale
     - Diagrams can *infinitely* scale without losing resolution
@@ -40,13 +40,13 @@ To address that disadvantage, the strategy is two fold:
 
 ### Intuitive Layout
 
-A reader or reviewer of a git-diagram file can get a general sense of how the diagram will be layed out at a glance. The format provides an intuitive way to understand how elements spatially relate to each other.
+A reader or reviewer of a plain-diagram file can get a general sense of how the diagram will be layed out at a glance. The format provides an intuitive way to understand how elements spatially relate to each other.
 
 The author is alleviated from the need of having to do the math to figure out the specific coordinates of where elements should be placed, rotations, translations, and other transform matrices.
 
 ## File Format
 
-The git-diagram format separates the following characteristics into different sections:
+The plain-diagram format separates the following characteristics into different sections:
 
 - Elements
     - Shape and Size
@@ -60,7 +60,7 @@ The git-diagram format separates the following characteristics into different se
 
 There are also some special sections, such as the ability to set the rendered image's margins, and also declare some variables. They are described in [Special Sections](#special-sections)
 
-The git-diagram file must contain Sections in the following order:
+The plain-diagram file must contain Sections in the following order:
 
 1. Elements, Styling, and Special Sections
 2. Layout Section
@@ -72,7 +72,7 @@ The git-diagram file must contain Sections in the following order:
 
 There are several built-in elements such as circles and rectangles. There is more detailed info about these elements in [Built-In Types](#built-in-types)
 
-The elements subsection of the git-diagram file follows the format of:
+The elements subsection of the plain-diagram file follows the format of:
 
 ```
 $elementType:
@@ -135,7 +135,7 @@ layout:
 
 > ![](readme-assets/sample1.svg)
 
-*Note: example images do not appear on the npmjs site. Head over to the repo's [page](https://github.com/sponbergbadger/git-diagram#readme) to see them.*
+*Note: example images do not appear on the npmjs site. Head over to the repo's [page](https://github.com/sponbergbadger/plain-diagram#readme) to see them.*
 
 #### Column Span
 
@@ -257,7 +257,7 @@ For more detailed information on how the layout works, see [Layout Computation L
 
 Styling of the elements has its own subsection. While it could be done where the elements shape and size are declared, the styling is intentionally in a separate section. The rationale is separation of concerns. From the layout section, you get a relative sense of how the elements are layed out. From the element section, you get the type of shape and its size. That information, especially concisely declared, is enough to form a wire-frame picture in your mind. Finally, the styling section, applies how the elements will look and feel. Eg. colors, dashed lines, fills, corner radiuses, etc.
 
-The elements subsection of the git-diagram file follows the format of:
+The elements subsection of the plain-diagram file follows the format of:
 
 ```
 style:
@@ -436,7 +436,7 @@ settings:
 
 #### SVG
 
-In the event that a diagram author needs a feature that is not provided by git-diagram, raw svg can be provided, which will be appended to an element's block during rendering.
+In the event that a diagram author needs a feature that is not provided by plain-diagram, raw svg can be provided, which will be appended to an element's block during rendering.
 
 Using this special type should be a last resort.
 
@@ -710,7 +710,7 @@ layout:
 
 #### Z-Index and Rendering Order
 
-Layers are layed out and rendered in the order they appear in the git-diagram file. The original layer, or the default layer, has a z-index of 1 by default. Each additional layer, by default, has an incremented z-index.
+Layers are layed out and rendered in the order they appear in the plain-diagram file. The original layer, or the default layer, has a z-index of 1 by default. Each additional layer, by default, has an incremented z-index.
 
 The z-index for a layer can be specified by appending ```:$z-index``` to the ```*``` character when denoting a layer.
 
@@ -1031,13 +1031,13 @@ Svg uses the css style ```text-anchor``` to control horizontal alignment with a 
 
 Svg uses the css style ```dominant-baseline``` to control the vertical alignment with a value of hanging, middle, or alphabetic, for top, middle, and bottom aligned respectively.
 
-When the author uses [Grid Alignment](#grid-alignment), git-diagram will do both of those things. A css class be added to the element's class definition. Therefore, it is not necessary for the author to use the above properties in the style section. (If the author does also declare those css properties, they will override the settings that git-diagram has determined).
+When the author uses [Grid Alignment](#grid-alignment), plain-diagram will do both of those things. A css class be added to the element's class definition. Therefore, it is not necessary for the author to use the above properties in the style section. (If the author does also declare those css properties, they will override the settings that plain-diagram has determined).
 
 ## Plugins
 
 A user of this library can supply Plugins to provide their own element types, which can then be used alongside the built-in types.
 
-For example, let's say a diagram author wants to use a re-usable text box shape across all of their diagrams. Rather than having to include the shape in every git-diagram file, they can write a plugin in one file, and have the element available to all of their diagram files.
+For example, let's say a diagram author wants to use a re-usable text box shape across all of their diagrams. Rather than having to include the shape in every plain-diagram file, they can write a plugin in one file, and have the element available to all of their diagram files.
 
 Continuing the example, suppose this is what the author wants their diagram file to be:
 
@@ -1067,7 +1067,7 @@ Creating a plugin requires writing code to describe the plugin and invoking an A
 The architecture makes a distinction between three separate steps when producing a diagram.
 
 1. Parsing
-    - Reading the git-diagram text file and parsing it into elements
+    - Reading the plain-diagram text file and parsing it into elements
 2. Producing the layout
     - Computing coordinates and sizes for elements and layers
     - Creating transform operations, including scaling, translating, and rotating
@@ -1111,8 +1111,8 @@ function round(float, digits = 3) {}
 
 where the variables:
 
-  - ```userFacingType``` is the key in the git-diagram file that invokes the parser function
-  - ```parserFunction``` is the name of the plugin function for parsing the lines of text from the git-diagram file for an element's description
+  - ```userFacingType``` is the key in the plain-diagram file that invokes the parser function
+  - ```parserFunction``` is the name of the plugin function for parsing the lines of text from the plain-diagram file for an element's description
   - ```type``` is the internal key for the type of element to render. This key is matched with a Layout Producer and a Renderer.
   - ```layoutProducerFunction``` is the name of the plugin function for laying out the element, which determines its size, position, and transforms
   - ```rendererFunction``` is the name of the plugin function for rendering the element to svg
@@ -1154,9 +1154,9 @@ The parser function is passed the following parameters, in order:
           - userError(message): throws an error with the message and formatting indicating the line the error occurred, and a few lines above and below where the error occurred. The occurrence line is determined to be the last line that was popped.
       - Be responsible when calling pop(). Every line removed must be handled.
   - ```variables```
-      - Map: A map of variable name to value. This is the list of variables declared in the git-diagram special section.
+      - Map: A map of variable name to value. This is the list of variables declared in the plain-diagram special section.
   - ```settings```
-      - Map: A map of settings. This is the list of settings that have defaults and can be overridden in the git-diagram special section.
+      - Map: A map of settings. This is the list of settings that have defaults and can be overridden in the plain-diagram special section.
 
 ###### Output
 
@@ -1292,8 +1292,8 @@ function renderEllipse(obj, sizeAndPosition, styleBlock, svgBlock) {
 
 ## Layout Computation Logic
 
-- Layers are parsed in the order they are defined in the git-diagram file.
-- Layers can only reference layers that have been defined above them in the git-diagram file.
+- Layers are parsed in the order they are defined in the plain-diagram file.
+- Layers can only reference layers that have been defined above them in the plain-diagram file.
 - The diagram is parsed by making a grid based on the default layer.
     - Each grid rectangle has either empty space or an element.
 - Following layers can reference elements in the default layer, or elements in layers defined above it.
@@ -1339,7 +1339,7 @@ Example:
 ```javascript
 const path = require('path')
 
-const SvgDiagramFactory = require('git-diagram').SvgDiagramFactory
+const SvgDiagramFactory = require('plain-diagram').SvgDiagramFactory
 
 const basePath = 'diagrams'
 const pluginPaths = ['diagrams/js/Plugins.js']
