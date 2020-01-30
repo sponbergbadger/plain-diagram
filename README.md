@@ -1225,6 +1225,8 @@ The layout producer function is passed the following parameters, in order:
               - The width of the column
           - ```rowHeight```
               - The height of the row
+          - ```box```
+              - Information about the path box when a path uses box mode
 
 ###### Output
 
@@ -1289,6 +1291,56 @@ function renderEllipse(obj, sizeAndPosition, styleBlock, svgBlock) {
            stroke="black"${styleBlock}${svgBlock}></ellipse>`
 }
 ```
+
+#### Box mode Using Path
+
+When using Layer Positioning On A Path, the default mode is ```path```. The library will automatically place a layer on the path and perform the necessary translations and rotations.
+
+There is an alternative mode which can be specified on the path declaration with ```mode:box```.
+
+In that mode, a context aware box is created between the two path points, which is passed into a layout producer function in the position parameter, as described in [Layout Producer Function Contract](#layout-producer-function-contract)
+
+The context aware box may helpful when writing plugins. There is an example of a plugin that draws a right-angle line in the unit test class [Plugins.js](test/assets/js/Plugins.js)
+
+The box object has the following properties:
+
+  - ```from```
+      - Object: information about the from anchor
+  - ```to```
+      - Object: information about the to anchor
+
+The anchor object has the following properties:
+
+  - ```handleV```
+      - String: The vertical anchor position on the object. One of top, middle, bottom
+  - ```handleH```
+      - String: The horizontal anchor position on the object. One of left, center, right
+  - ```x```
+      - String: The x offset in the box for this anchor position
+  - ```y```
+      - String: The y offset in the box for this anchor position
+
+Example using the right-angle-line Plugin:
+
+```
+rect:
+  r: 100 50
+
+right-angle-line:
+  ral:
+
+layout:
+
+  r
+
+    r
+
+* from right of r to top of r[2] mode:box
+
+  ral
+```
+
+> ![](readme-assets/sample23.svg)
 
 ## Layout Computation Logic
 

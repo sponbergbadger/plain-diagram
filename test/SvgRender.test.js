@@ -908,3 +908,31 @@ test('it should fill dynamic heights with spacers', () => {
   expect(rect5.y).toBe('80')
   expect(rect6.y).toBe('80')
 })
+
+test('it should provide box information when using box mode', () => {
+  const svg = parseDiagram('diagram75')
+  const p1 = getElement(svg, 'path', 1, 1)._attributes
+  const p2 = getElement(svg, 'path', 1, 2)._attributes
+  const p3 = getElement(svg, 'path', 1, 3)._attributes
+  const p4 = getElement(svg, 'path', 1, 4)._attributes
+  const p5 = getElement(svg, 'path', 1, 5)._attributes
+  const p6 = getElement(svg, 'path', 1, 6)._attributes
+  const p7 = getElement(svg, 'path', 1, 7)._attributes
+  const p8 = getElement(svg, 'path', 1, 8)._attributes
+  const p9 = getElement(svg, 'path', 1, 9)._attributes
+  const p10 = getElement(svg, 'path', 1, 10)._attributes
+  const p11 = getElement(svg, 'path', 1, 11)._attributes
+  const p12 = getElement(svg, 'path', 1, 12)._attributes
+  expect(p1.d).toMatch('M 270,145 m 16 0 ')
+  expect(p2.d).toMatch('M 379.5,80 m 0.5 16 ')
+  expect(p3.d).toMatch('M 385,145 m 89 0 ')
+  expect(p4.d).toMatch('M 220,170 m 0 16 ')
+  expect(p5.d).toMatch('M 130,234.5 m 16 0.5 ')
+  expect(p6.d).toMatch('M 220,240 m 0 44 ')
+  expect(p7.d).toMatch('M 430,170 m 110 16 ')
+  expect(p8.d).toMatch('M 430,234.5 m 184 0.5 ')
+  expect(p9.d).toMatch('M 430,240 m 110 44 ')
+  expect(p10.d).toMatch('M 270,260 m 16 65 ')
+  expect(p11.d).toMatch('M 379.5,260 m 0.5 114 ')
+  expect(p12.d).toMatch('M 385,260 m 89 65 ')
+})

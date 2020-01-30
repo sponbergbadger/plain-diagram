@@ -215,3 +215,11 @@ test('when a parsed element does not have a height, it should throw an error', (
 test('when the layout section has no content, it should throw an error', () => {
   expectError('diagram71', 6, 'Layout section must have content');
 })
+
+test('when fillHeight:$path is used while the mode is not box, it should throw an error', () => {
+  expectError('diagram76', 13, 'fillHeight:$path may only be used with box mode');
+})
+
+test('when an invalid path mode is specified, it should throw an error', () => {
+  expectError('diagram77', 13, 'Invalid path mode: invalid');
+})
