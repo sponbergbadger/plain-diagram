@@ -4,6 +4,7 @@ const C = {
   nosize: 'nosize',
   nowidth: 'nowidth',
   notificationSpecParsed: 'notificationSpecParsed',
+  rightAngleLine: 'right-angle-line',
 }
 
 registerParser(C.textbox, parserTextbox)
@@ -16,6 +17,10 @@ registerParser(C.nosize, parserNosize)
 registerRenderer(C.nosize, renderNosize)
 
 registerParser(C.nowidth, parserNowidth)
+
+registerParser(C.rightAngleLine, parserRightAngleLine)
+registerLayoutProducer(C.rightAngleLine, layoutRightAngleLine)
+registerRenderer(C.rightAngleLine, renderRightAngleLine)
 
 addListener(C.notificationSpecParsed, specParsed)
 
@@ -153,6 +158,93 @@ function parserNowidth(line, inputFile, variables, settings) {
     height: 1,
     type: C.nosize,
   }
+}
+
+
+function parserRightAngleLine(line, inputFile, variables) {
+  const {key, tokens} = parseKeyContent(line, inputFile, 2, variables, true)
+  const params = {
+    fillWidth: [0, 1],
+    fillHeight: [0, 1],
+  }
+  return {
+    key,
+    type: C.rightAngleLine,
+    width: 'fill',
+    height: 'fill',
+    params
+  }
+}
+
+function layoutRightAngleLine(obj, position) {
+  const {colX, rowY, colWidth, rowHeight} = position
+
+  const pathHeadUp = 'l 5 0 l -5 -15 l -5 15 z'
+  const pathHeadDown = 'l 5 0 l -5 15 l -5 -15 z'
+  const pathHeadLeft = 'l 0 5 l -15 -5 l 15 -5 z'
+  const pathHeadRight = 'l 0 5 l 15 -5 l -15 -5 z'
+
+  let pathHead
+
+  let x1 = position.box.from.x
+  let y1 = position.box.from.y
+  let x2 = position.box.to.x
+  let y2 = position.box.to.y
+
+  let dx1 = 0
+  let dy1 = 0
+  let dx2 = 0
+  let dy2 = 0
+
+  if (position.box.to.handleV === 'bottom') {
+    y2 += 16
+    pathHead = pathHeadUp
+
+    dx1 = x2 - x1
+    dy2 = y2 - y1
+  } else if (position.box.to.handleV === 'top') {
+    y2 -= 16
+    pathHead = pathHeadDown
+
+    dx1 = x2 - x1
+    dy2 = y2 - y1
+  } else if (position.box.to.handleH === 'left') {
+    x2 -= 16
+    pathHead = pathHeadRight
+
+    dy1 = y2 - y1
+    dx2 = x2 - x1
+  } else if (position.box.to.handleH === 'right') {
+    x2 += 16
+    pathHead = pathHeadLeft
+
+    dy1 = y2 - y1
+    dx2 = x2 - x1
+  }
+
+  let path = `m ${x1} ${y1} l ${dx1} ${dy1} l ${dx2} ${dy2}`
+
+  pathHead = `m ${x2} ${y2} ${pathHead}`
+
+  return {
+    path,
+    pathHead,
+  }
+}
+
+function renderRightAngleLine(obj, sizeAndPosition, styleBlock, svgBlock) {
+  const {cx, cy} = sizeAndPosition
+
+  const x1 = cx - obj.width / 2
+  const y1 = cy - obj.height / 2
+
+  let pathHeadStyle = ` class="${obj.key}-head"`
+
+  const pathSpec = `M ${round(x1)},${round(y1)} ${sizeAndPosition.path}`
+  let buf = `<path d="${pathSpec}"${styleBlock}${svgBlock}></path>`
+  const headPathSpec = `M ${round(x1)},${round(y1)} ${sizeAndPosition.pathHead}`
+  buf += `<path d="${headPathSpec}"${pathHeadStyle}></path>`
+  return buf
 }
 
 function specParsed(spec) {

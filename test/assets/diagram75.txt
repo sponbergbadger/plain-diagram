@@ -1,0 +1,76 @@
+rect:
+  r: 100 50
+  a: 100 50
+
+right-angle-line:
+  ral:
+
+default-style:
+  .ral-head: fill: black
+
+style:
+  ral: stroke: black; fill: none
+
+layout:
+
+           r
+
+
+       r       r
+
+
+    r      a      r
+
+
+       r       r
+
+
+           r
+
+* from top of a plus -5,0 to right of r[2] mode:box
+
+  ral
+
+* from top of a to bottom of r[1] mode:box
+
+  ral
+
+* from top of a plus 5,0 to left of r[3] mode:box
+
+  ral
+
+* from left of a plus 0,-5 to bottom of r[2] mode:box
+
+  ral
+
+* from left of a to right of r[4] mode:box
+
+  ral
+
+* from left of a plus 0,5 to top of r[6] mode:box
+
+  ral
+
+* from right of a plus 0,-5 to bottom of r[3] mode:box
+
+  ral
+
+* from right of a to left of r[5] mode:box
+
+  ral
+
+* from right of a plus 0,5 to top of r[7] mode:box
+
+  ral
+
+* from bottom of a plus -5,0 to right of r[6] mode:box
+
+  ral
+
+* from bottom of a to top of r[8] mode:box
+
+  ral
+
+* from bottom of a plus 5,0 to left of r[7] fillHeight:$path mode:box
+
+  ral

@@ -1,0 +1,15 @@
+rect:
+  r: 100 50
+  a: 100 50
+
+right-angle-line:
+  ral:
+
+layout:
+
+      r
+  a
+
+* from top of a to left of r mode:invalid
+
+  ral
