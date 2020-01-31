@@ -1,6 +1,6 @@
 {
   "name": "plain-diagram",
-  "version": "2.3.0",
+  "version": "2.4.0",
   "description": "Create diagrams you can git",
   "main": "lib/index.js",
   "files": [
