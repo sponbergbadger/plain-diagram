@@ -501,6 +501,14 @@ test('it should fill a layer`s height using only space available in the layer`s 
   expect(line.y2).toBe('30')
 })
 
+test('it should not overfill a negative height offset', () => {
+  const svg = parseDiagram('diagram16')
+  const line = getElement(svg, 'line', 0, 5)._attributes
+
+  expect(line.y1).toBe('130')
+  expect(line.y2).toBe('130')
+})
+
 test('it should render a shape', () => {
   const svg = parseDiagram('diagram17')
   const s1 = getElement(svg, 'g')._attributes
@@ -861,6 +869,12 @@ test('it should fill dynamic widths with spacers', () => {
   const line4 = getElement(svg, 'line', 0, 4)._attributes
   const line5 = getElement(svg, 'line', 0, 5)._attributes
   const line6 = getElement(svg, 'line', 0, 6)._attributes
+  expect(line1.x1).toBe('50')
+  expect(line2.x1).toBe('50')
+  expect(line3.x1).toBe('50')
+  expect(line4.x1).toBe('50')
+  expect(line5.x1).toBe('45')
+  expect(line6.x1).toBe('50')
   expect(parseFloat(line1.x2) - parseFloat(line1.x1)).toBe(40)
   expect(parseFloat(line2.x2) - parseFloat(line2.x1)).toBe(30)
   expect(parseFloat(line3.x2) - parseFloat(line3.x1)).toBe(30)
@@ -877,7 +891,7 @@ test('it should fill dynamic widths with spacers', () => {
   expect(rect2.x).toBe('80')
   expect(rect3.x).toBe('80')
   expect(rect4.x).toBe('80')
-  expect(rect5.x).toBe('80')
+  expect(rect5.x).toBe('85')
   expect(rect6.x).toBe('80')
 })
 
@@ -889,6 +903,12 @@ test('it should fill dynamic heights with spacers', () => {
   const line4 = getElement(svg, 'line', 0, 4)._attributes
   const line5 = getElement(svg, 'line', 0, 5)._attributes
   const line6 = getElement(svg, 'line', 0, 6)._attributes
+  expect(line1.y1).toBe('50')
+  expect(line2.y1).toBe('50')
+  expect(line3.y1).toBe('50')
+  expect(line4.y1).toBe('50')
+  expect(line5.y1).toBe('50')
+  expect(line6.y1).toBe('50')
   expect(parseFloat(line1.y2) - parseFloat(line1.y1)).toBe(40)
   expect(parseFloat(line2.y2) - parseFloat(line2.y1)).toBe(30)
   expect(parseFloat(line3.y2) - parseFloat(line3.y1)).toBe(30)
@@ -905,7 +925,7 @@ test('it should fill dynamic heights with spacers', () => {
   expect(rect2.y).toBe('80')
   expect(rect3.y).toBe('80')
   expect(rect4.y).toBe('80')
-  expect(rect5.y).toBe('80')
+  expect(rect5.y).toBe('90')
   expect(rect6.y).toBe('80')
 })
 
