@@ -79,48 +79,79 @@ function layoutTextbox(obj, position) {
   }
 }
 
-function renderTextbox(obj, sizeAndPosition, styleBlock, svgBlock) {
+function renderTextbox(obj, sizeAndPosition, styleBlock, svgBlock, context, styleData) {
   let {x1, y1, width, height} = sizeAndPosition
 
   let buf = `<rect x="${round(x1, 4)}" y="${round(y1)}" width="${round(width)}" height="${round(height)}" stroke-width="1" stroke="black"${styleBlock}${svgBlock}></rect>`
-  buf += renderText(obj, sizeAndPosition, styleBlock, svgBlock)
+  buf += renderText(obj, sizeAndPosition, styleBlock, svgBlock, context, styleData)
 
   return buf
 }
 
 function renderText(obj, sizeAndPosition, styleBlock, svgBlock, context, styleData) {
-  let {cx, cy, width, height} = sizeAndPosition
+  let {cx, cy, width, height, gridAlign} = sizeAndPosition
 
-  const reAlignRight = /text-anchor:\s*end/
-  if (reAlignRight.test(styleData)) {
-    cx += width / 2
+  styleBlock = applyTextAlignment(gridAlign, styleData)
+
+  let x = cx
+  let y = cy
+  if (sizeAndPosition.gridAlign.horizontal === 'left') {
+    x -= width / 2
+  } else if (sizeAndPosition.gridAlign.horizontal === 'right') {
+    x += width / 2
   }
-  const reAlignLeft = /text-anchor:\s*start/
-  if (reAlignLeft.test(styleData)) {
-    cx -= width / 2
+  if (sizeAndPosition.gridAlign.vertical === 'top') {
+    y -= height / 2
+  } else if (sizeAndPosition.gridAlign.vertical === 'bottom') {
+    y += height / 2
   }
 
-  const reAlignBottom = /dominant-baseline:\s*alphabetic/
-  if (reAlignBottom.test(styleData)) {
-    cy += width / 2
-  }
-  const reAlignTop = /dominant-baseline:\s*hanging/
-  if (reAlignTop.test(styleData)) {
-    cy -= width / 2
+  let lineHeight = 1.2
+  let dy = 0
+  if (sizeAndPosition.gridAlign.vertical === 'middle') {
+    dy = round(-1 * lineHeight / 2 * (obj.text.length - 1))
+  } else if (sizeAndPosition.gridAlign.vertical === 'bottom') {
+    dy = round(-1 * lineHeight * (obj.text.length - 1))
   }
 
   // Any styles defined will override default class
-  let buf = `<text x="${round(cx)}" y="${round(cy)}" ${styleBlock}>`
-  const lineHeight = 1.2
-  let dy = -1 * lineHeight / 2 * (obj.text.length - 1)
+  let buf = `<text x="${round(x)}" y="${round(y)}"${styleBlock}>`
   for (var line of obj.text) {
     const safe = Util.htmlEntities(line.trim())
-    buf += `<tspan x="${round(cx)}" dy="${dy}em">${safe}</tspan>`
+    buf += `<tspan x="${round(x)}" dy="${dy}em">${safe}</tspan>`
     dy = lineHeight
   }
   buf += `</text>`
 
   return buf
+}
+
+function applyTextAlignment(gridAlign, styleData) {
+  let alignClass
+  if (gridAlign.vertical === 'top') {
+    alignClass = `-pln-diagram-at`
+  } else if (gridAlign.vertical === 'bottom') {
+    alignClass = `-pln-diagram-ab`
+  } else if (gridAlign.vertical === 'middle') {
+    alignClass = `-pln-diagram-am`
+  }
+  if (gridAlign.horizontal === 'left') {
+    alignClass += ` -pln-diagram-al`
+  } else if (gridAlign.horizontal === 'right') {
+    alignClass += ` -pln-diagram-ar`
+  } else if (gridAlign.horizontal === 'center') {
+    alignClass += ` -pln-diagram-ac`
+  }
+
+  let classesBuf = ''
+  for (var c of styleData.classes) {
+    classesBuf += ' ' + c
+  }
+  let styleBuf = ''
+  if (styleData.style !== '') {
+    styleBuf = ` style="${styleData.style}"`
+  }
+  return ` class="${alignClass}${classesBuf}"${styleBuf}`
 }
 
 function parserFunnybox(line, inputFile, variables, settings) {
