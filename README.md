@@ -374,7 +374,7 @@ style:
   message3: font-family: Indie Flower
 
 default-style:
-     text: font-family: Lobster
+  text: font-family: Lobster
 
 font:
         import: https://fonts.googleapis.com/css?family=Roboto
@@ -482,7 +482,7 @@ Example:
 
 ```
 circle:
-   o: 15
+  o: 15
 
 debug:
   showGrid: true
@@ -1497,9 +1497,9 @@ font-awesome:
   archive: fas archive  60 60 $darkyellow
 
 variable:
-          purple: rgb(125, 106, 181)
-            pink: rgb(125, 106, 181)
-      darkyellow: rgb(191, 144,   0)
+      purple: rgb(125, 106, 181)
+        pink: rgb(125, 106, 181)
+  darkyellow: rgb(191, 144,   0)
 ```         
 
 #### Characters In The Layout
