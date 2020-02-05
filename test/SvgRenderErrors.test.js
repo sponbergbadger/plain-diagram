@@ -110,14 +110,20 @@ test('it should throw an error when fill is used on an unsupported type', () => 
   }).toThrow();
 })
 
-test('it should throw an error when the image height is zero', () => {
+test('it should throw an error when the diagram height is zero', () => {
   expect(() => {
     parseDiagram('diagram28')
   }).toThrow();
 })
 
-test('it should throw an error when the image width is zero', () => {
+test('it should throw an error when the diagram width is zero', () => {
   expectError('diagram29', 6, 'Layer width must be > 0')
+})
+
+test('it should not throw an error when a layer dimension is zero', () => {
+  expect(() => {
+    parseDiagram('diagram78')
+  }).not.toThrow();
 })
 
 test('when polygon coords are not a float, it should throw an error', () => {
