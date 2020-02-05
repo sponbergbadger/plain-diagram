@@ -494,11 +494,11 @@ test('it should fill a layer`s height using a fixed height', () => {
 })
 
 test('it should fill a layer`s height using only space available in the layer`s grid', () => {
-  const svg = parseDiagram('diagram16')
+  const svg = parseDiagram('diagram16', true)
   const line = getElement(svg, 'line', 0, 4)._attributes
 
   expect(line.y1).toBe('30')
-  expect(line.y2).toBe('30')
+  expect(line.y2).toBe('50') // From y1 to y2 should be the height of the vertical-spacer
 })
 
 test('it should not overfill a negative height offset', () => {
@@ -947,10 +947,10 @@ test('it should provide box information when using box mode', () => {
   expect(p2.d).toMatch('M 379.5,80 m 0.5 16 ')
   expect(p3.d).toMatch('M 385,145 m 89 0 ')
   expect(p4.d).toMatch('M 220,170 m 0 16 ')
-  expect(p5.d).toMatch('M 130,234.5 m 16 0.5 ')
+  expect(p5.d).toMatch('M 130,225 m 16 10 ')
   expect(p6.d).toMatch('M 220,240 m 0 44 ')
   expect(p7.d).toMatch('M 430,170 m 110 16 ')
-  expect(p8.d).toMatch('M 430,234.5 m 184 0.5 ')
+  expect(p8.d).toMatch('M 430,225 m 184 10 ')
   expect(p9.d).toMatch('M 430,240 m 110 44 ')
   expect(p10.d).toMatch('M 270,260 m 16 65 ')
   expect(p11.d).toMatch('M 379.5,260 m 0.5 114 ')

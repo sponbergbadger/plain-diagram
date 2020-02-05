@@ -1,0 +1,13 @@
+ellipse:
+  e: 1 1
+
+text:
+  t: 0 0 Msg
+
+layout:
+
+  e
+
+* at e
+
+  t
