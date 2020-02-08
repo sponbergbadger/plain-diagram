@@ -229,3 +229,11 @@ test('when fillHeight:$path is used while the mode is not box, it should throw a
 test('when an invalid path mode is specified, it should throw an error', () => {
   expectError('diagram77', 13, 'Invalid path mode: invalid');
 })
+
+test('when an error is thrown when renderFromText was called, it should say input text', () => {
+  try {
+    const xml = diagramFactory.renderDiagramFromText('')
+  } catch (e) {
+    expect(e.message).toMatch('input text:')
+  }
+})
