@@ -1409,14 +1409,42 @@ renderDiagram('diagram2')
 ...
 ```
 
+### Overriding Default Settings
+
+Default settings can be overridden, which will then apply to all diagrams that a Diagram Factory renders (unless the input file specifies the setting). The following default settings can be overridden:
+
+  - margin
+      - left
+      - top
+      - right
+      - bottom
+  - defaultSettings
+      - horizontal-spacer
+      - vertical-spacer
+      - text-width
+      - text-height
+      - grid-align
+      - grid-valign
+
+Example:
+
+```javascript
+const diagramFactory = new SvgDiagramFactory(basePath, pluginPaths)
+
+diagramFactory.margin.left = 5
+
+diagramFactory.defaultSettings['grid-align'] = 'left'
+```
+
 ### Relative and Absolute Paths
 
 By default, paths to images and fonts in the generated svg are relative from the diagram file.
 
-There could be times when the author wants to use an absolute path. This can be done by setting the parameter in the example below.
+There could be times when the author wants to use an absolute path. This can be done by setting the property in the example below.
 
 ```javascript
 const diagramFactory = new SvgDiagramFactory(basePath, pluginPaths)
+
 diagramFactory.convertRelativePathsToAbsolute = true
 ```
 
