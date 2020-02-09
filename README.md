@@ -1409,6 +1409,17 @@ renderDiagram('diagram2')
 ...
 ```
 
+### Relative and Absolute Paths
+
+By default, paths to images and fonts in the generated svg are relative from the diagram file.
+
+There could be times when the author wants to use an absolute path. This can be done by setting the parameter in the example below.
+
+```javascript
+const diagramFactory = new SvgDiagramFactory(basePath, pluginPaths)
+diagramFactory.convertRelativePathsToAbsolute = true
+```
+
 ## Best Practices
 
 The purpose of this library is to provide a concise way to describe a diagram in plain text.
